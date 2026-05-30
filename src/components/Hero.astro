@@ -1,0 +1,65 @@
+---
+interface Props {
+  headline: string;
+  subtitle: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+const { headline, subtitle, ctaLabel, ctaHref } = Astro.props;
+const headlineHtml = headline.replace(/\n/g, '<br/>');
+---
+
+<section class="hero">
+  <div class="hero-content">
+    <h1 set:html={headlineHtml}></h1>
+    <p>{subtitle}</p>
+    <a href={ctaHref} class="btn-primary">{ctaLabel}</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+  }
+  .hero-content {
+    max-width: 760px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-content h1 {
+    font-size: clamp(40px, 6vw, 60px);
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+  .hero-content p {
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--text);
+    line-height: 1.75;
+    max-width: 560px;
+    margin: 0 auto 40px;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 13px 32px;
+    background: linear-gradient(90deg, var(--magenta) 0%, var(--violet) 100%);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    border-radius: var(--border-radius);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+</style>

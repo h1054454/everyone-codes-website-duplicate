@@ -1,0 +1,96 @@
+---
+import slide1 from '~/assets/partners/carousel-1.png';
+import slide2 from '~/assets/partners/carousel-2.png';
+import slide3 from '~/assets/partners/carousel-3.png';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'alumni' } = Astro.props;
+---
+
+<section {id}>
+  <div class="container">
+    <h2>Where our alumni work</h2>
+    <div class="logo-carousel-wrap">
+      <div class="logo-carousel-track">
+        <img src={slide1.src} alt="Alumni employer logos" />
+        <img src={slide2.src} alt="Alumni employer logos" />
+        <img src={slide3.src} alt="Alumni employer logos" />
+        <!-- duplicated for seamless loop -->
+        <img src={slide1.src} alt="" aria-hidden="true" />
+        <img src={slide2.src} alt="" aria-hidden="true" />
+        <img src={slide3.src} alt="" aria-hidden="true" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 64px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .container {
+    text-align: center;
+  }
+  h2 {
+    font-size: clamp(22px, 3vw, 32px);
+    margin-bottom: 44px;
+    color: var(--white);
+  }
+
+  .logo-carousel-wrap {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+  }
+  .logo-carousel-wrap::before,
+  .logo-carousel-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .logo-carousel-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(20, 11, 41, 0.9), transparent);
+  }
+  .logo-carousel-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(20, 11, 41, 0.9), transparent);
+  }
+  .logo-carousel-track {
+    display: flex;
+    gap: 0;
+    animation: logo-scroll 20s linear infinite;
+    width: max-content;
+  }
+  .logo-carousel-wrap:hover .logo-carousel-track {
+    animation-play-state: paused;
+  }
+  .logo-carousel-track img {
+    height: 60px;
+    width: auto;
+    flex-shrink: 0;
+  }
+  @keyframes logo-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-carousel-track {
+      animation: none;
+      transform: none;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+</style>

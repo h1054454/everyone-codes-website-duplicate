@@ -1,0 +1,61 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id = 'mission' } = Astro.props;
+---
+
+<section {id}>
+  <div class="container">
+    <h2 class="section-title">Our Mission</h2>
+    <div class="mission-body">
+      <h3>We are an academy for everyone.</h3>
+      <p>
+        Regardless of a person's 'social status', where they come from or what they identify as,
+        we believe that people can learn anything with the right mindset.
+      </p>
+      <p>
+        That's why we've made it our mission to create a safe learning environment and open up
+        the world of IT to people of all ages, genders and backgrounds. And with the help of our
+        experienced mentors, we will equip you with all the necessary hard and soft skills to
+        jumpstart your professional career in the IT industry.
+      </p>
+      <p><strong>IT starts here.</strong></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: transparent;
+    text-align: center;
+  }
+  .section-title {
+    font-size: clamp(26px, 3.5vw, 42px);
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .mission-body {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .mission-body h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 2.5vw, 26px);
+    color: var(--magenta);
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+  .mission-body p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 18px;
+  }
+  .mission-body p strong {
+    color: var(--white);
+  }
+</style>

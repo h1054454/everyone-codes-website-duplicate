@@ -1,0 +1,21 @@
+---
+import dividerImg from '~/assets/brand/divider-triple-short.svg';
+---
+
+<div class="divider" aria-hidden="true">
+  <img src={dividerImg.src} alt="" />
+</div>
+
+<style>
+  .divider {
+    display: flex;
+    justify-content: center;
+    padding: 6px 0;
+    overflow: hidden;
+  }
+  .divider img {
+    width: 180px;
+    height: auto;
+    max-height: 24px;
+  }
+</style>

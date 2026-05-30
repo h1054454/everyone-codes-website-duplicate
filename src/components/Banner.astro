@@ -1,0 +1,25 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<div class="banner">
+  We're hiring! <a href={`${base}/#career`}>Find out more →</a>
+</div>
+
+<style>
+  .banner {
+    background: var(--magenta);
+    color: var(--white);
+    text-align: center;
+    padding: 9px 20px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .banner a {
+    color: var(--white);
+    text-decoration: underline;
+  }
+</style>

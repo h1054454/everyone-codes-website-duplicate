@@ -1,0 +1,61 @@
+---
+import TeamCard from './TeamCard.astro';
+import edinaPhoto from '~/assets/team/edina.png';
+import alexPhoto from '~/assets/team/alex.png';
+import stefanPhoto from '~/assets/team/stefan.png';
+import angelinaPhoto from '~/assets/team/angelina.png';
+import yasinPhoto from '~/assets/team/yasin.png';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'team' } = Astro.props;
+
+const team = [
+  { name: 'Edina Hadziahmetovic', role: 'Managing Director', photo: edinaPhoto },
+  { name: 'Alexander von Franqué', role: 'CTO & Mentor', photo: alexPhoto },
+  { name: 'Stefan Steinberger', role: 'Founder', photo: stefanPhoto },
+  { name: 'Angelina Djordjevic', role: 'Project Manager (on parental leave)', photo: angelinaPhoto },
+  { name: 'Yasin Sahin', role: 'Assistant', photo: yasinPhoto },
+];
+---
+
+<section {id}>
+  <div class="container">
+    <h2 class="section-title">Our Team</h2>
+    <div class="team-grid">
+      {team.map((member) => (
+        <TeamCard name={member.name} role={member.role} photo={member.photo} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: transparent;
+  }
+  .section-title {
+    font-size: clamp(26px, 3.5vw, 42px);
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  @media (max-width: 860px) {
+    .team-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 540px) {
+    .team-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

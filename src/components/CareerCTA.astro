@@ -1,0 +1,111 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id = 'career' } = Astro.props;
+---
+
+<section {id}>
+  <div class="container">
+    <h2>We're hiring!</h2>
+
+    <div class="career-cards">
+      <article class="job-card">
+        <h3>Civilian Servant</h3>
+        <div class="job-card-divider"></div>
+        <p>Join everyone codes for a hands-on civilian service!</p>
+        <p>
+          Dive into tasks like course support, website updates, and tech setup while gaining
+          real experience in a fun, collaborative team.
+        </p>
+        <p class="job-start">Start July or October 2026</p>
+        <a
+          href="https://drive.google.com/file/d/1qecf9BqbyaQRCZ4RWWK8OCMoNB1Qh3bl/view"
+          target="_blank"
+          rel="noopener"
+          class="btn-job"
+        >View →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: linear-gradient(135deg, #0d0820 0%, #1c0d3e 50%, #251060 100%);
+    text-align: center;
+    padding: 100px 24px;
+    border-top: 1px solid rgba(149, 84, 255, 0.2);
+  }
+  h2 {
+    font-size: clamp(26px, 4vw, 42px);
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .career-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 52px;
+  }
+  .job-card {
+    background: #1a1340;
+    border-radius: 12px;
+    border-left: 4px solid var(--lime);
+    padding: 36px 32px 32px;
+    max-width: 360px;
+    width: 100%;
+    text-align: left;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+  }
+  .job-card h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .job-card-divider {
+    height: 3px;
+    background: var(--lime);
+    border-radius: 2px;
+    margin-bottom: 22px;
+    width: 100%;
+  }
+  .job-card p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 14px;
+    text-align: left;
+  }
+  .job-card .job-start {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+  .btn-job {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 36px;
+    border: 2px solid var(--lime);
+    color: var(--white);
+    background: transparent;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 50px;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+  }
+  .btn-job:hover,
+  .btn-job:focus-visible {
+    background: var(--lime);
+    color: var(--bg);
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  name: string;
+  role: string;
+  photo: ImageMetadata;
+}
+
+const { name, role, photo } = Astro.props;
+---
+
+<article class="tm-card">
+  <div class="tm-img" style={`background-image:url(${photo.src})`}></div>
+  <div class="tm-info">
+    <h3>{name}</h3>
+    <span>{role}</span>
+  </div>
+</article>
+
+<style>
+  .tm-card {
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .tm-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(149, 84, 255, 0.18);
+  }
+  .tm-img {
+    height: 260px;
+    background: linear-gradient(160deg, #0d0820 0%, #1e1245 60%, #2e1870 100%);
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+  .tm-info {
+    padding: 18px 20px 20px;
+  }
+  .tm-info h3 {
+    font-size: 15px;
+    color: var(--white);
+    margin-bottom: 5px;
+  }
+  .tm-info span {
+    font-size: 12px;
+    color: var(--violet);
+    font-weight: 500;
+  }
+</style>

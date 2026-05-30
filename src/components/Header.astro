@@ -1,0 +1,240 @@
+---
+import logo from '~/assets/brand/logo.png';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<header>
+  <nav>
+    <a href={`${base}/`} class="logo" aria-label="everyone codes — Home">
+      <img src={logo.src} alt="everyone codes" width="37" height="37" />
+    </a>
+
+    <ul class="nav-links">
+      <li>
+        <a href="#" aria-haspopup="true">About Us <span class="caret" aria-hidden="true">▾</span></a>
+        <div class="dropdown" role="menu">
+          <a href={`${base}/#mission`} role="menuitem">Mission</a>
+          <a href={`${base}/#testimonials`} role="menuitem">Stories</a>
+          <a href={`${base}/#awards`} role="menuitem">Prizes &amp; Awards</a>
+          <a href={`${base}/#team`} role="menuitem">Team</a>
+          <a href={`${base}/#contact`} role="menuitem">Contact</a>
+          <a href={`${base}/#career`} role="menuitem">Career</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" aria-haspopup="true">AMS Programmes <span class="caret" aria-hidden="true">▾</span></a>
+        <div class="dropdown" role="menu">
+          <a href={`${base}/programmes/software-development-vienna`} role="menuitem">Software Development (Vienna)</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" aria-haspopup="true">For Companies <span class="caret" aria-hidden="true">▾</span></a>
+        <div class="dropdown" role="menu">
+          <a href={`${base}/for-companies/work-with-us`} role="menuitem">Work with us</a>
+          <a href={`${base}/for-companies/hire-graduates`} role="menuitem">Hire our graduates</a>
+        </div>
+      </li>
+    </ul>
+
+    <button
+      type="button"
+      class="hamburger"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      id="hamburger-btn"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<script>
+  /* Sticky-shrink + active-nav-link tracking + hamburger toggle */
+  const header = document.querySelector('header');
+  const navLinks = document.querySelectorAll('.nav-links > li > a');
+  const sections = document.querySelectorAll('section[id]');
+  const hamburger = document.getElementById('hamburger-btn');
+
+  function onScroll() {
+    if (!header) return;
+    if (window.scrollY > 60) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+
+    let current = '';
+    sections.forEach((sec) => {
+      const el = sec as HTMLElement;
+      if (window.scrollY >= el.offsetTop - 120) current = el.id;
+    });
+    navLinks.forEach((a) => {
+      const href = a.getAttribute('href') ?? '';
+      a.classList.remove('nav-active');
+      if (href.endsWith('#' + current)) a.classList.add('nav-active');
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Hamburger toggles mobile-nav (via global open class) */
+  hamburger?.addEventListener('click', () => {
+    const mobileNav = document.getElementById('mobile-nav');
+    if (!mobileNav) return;
+    const isOpen = mobileNav.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    mobileNav.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  /* Close any open dropdowns when clicking outside */
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.nav-links')) {
+      document.querySelectorAll<HTMLElement>('.dropdown').forEach((d) => {
+        d.style.display = '';
+      });
+    }
+  });
+</script>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(20, 11, 41, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: padding 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  }
+  header.scrolled {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    background: rgba(14, 8, 30, 0.98);
+  }
+
+  nav {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    height: 68px;
+    transition: height 0.3s ease;
+  }
+  header.scrolled nav { height: 52px; }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--white);
+  }
+  .logo img {
+    height: 37px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  .nav-links > li {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .nav-links > li > a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 100%;
+    padding: 0 16px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links > li > a:hover,
+  .nav-links > li > a.nav-active {
+    color: var(--violet);
+  }
+  .caret {
+    font-size: 9px;
+    opacity: 0.6;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #1c1240;
+    min-width: 210px;
+    border-top: 2px solid var(--violet);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    display: none;
+    flex-direction: column;
+    padding: 6px 0;
+  }
+  .nav-links > li:hover .dropdown,
+  .nav-links > li:focus-within .dropdown {
+    display: flex;
+  }
+  .dropdown a {
+    padding: 10px 20px;
+    font-size: 13px;
+    font-family: var(--font-body);
+    color: rgba(255, 255, 255, 0.75);
+    transition: background 0.2s, color 0.2s;
+  }
+  .dropdown a:hover,
+  .dropdown a:focus-visible {
+    background: rgba(149, 84, 255, 0.15);
+    color: var(--violet);
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    background: none;
+    border: none;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    align-items: center;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .hamburger[aria-expanded='true'] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger[aria-expanded='true'] span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger[aria-expanded='true'] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+</style>

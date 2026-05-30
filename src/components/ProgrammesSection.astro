@@ -1,0 +1,70 @@
+---
+import ProgrammeCard from './ProgrammeCard.astro';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'programmes' } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section {id}>
+  <div class="container">
+    <div class="programmes-intro">
+      <h2 class="section-title">Our Programmes</h2>
+      <p>
+        Using innovative learning methods, our programmes are designed to teach you the most
+        up-to-date practices, invaluable knowledge, teamwork and soft skills from day one.
+        That way, we prepare you in the best possible way for the professional challenges of
+        your future.
+      </p>
+      <br />
+      <p>It's not just what tech talents need – it's exactly what IT companies are looking for.</p>
+      <br />
+      <div class="badge-ams">AMS Funded</div>
+    </div>
+
+    <ProgrammeCard
+      title="Software Development\nVienna"
+      description="This 10-month programme in Vienna will teach you everything you'll need to know to start your career as a Junior Software Developer, from the basics of Java to back-end development with the Spring framework."
+      startDate="Starting Ende 2026 — Datum folgt"
+      href={`${base}/programmes/software-development-vienna`}
+    />
+  </div>
+</section>
+
+<style>
+  section {
+    background: transparent;
+  }
+  .section-title {
+    font-size: clamp(26px, 3.5vw, 42px);
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .programmes-intro {
+    max-width: 640px;
+    margin-bottom: 52px;
+  }
+  .programmes-intro p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text);
+  }
+  .badge-ams {
+    display: inline-block;
+    background: var(--lime);
+    color: var(--bg);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+</style>

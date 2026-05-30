@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 705.94 38.82">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: url(#linear-gradient);
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+        stroke-miterlimit: 10;
+        stroke-width: 1.8px;
+      }
+
+      .cls-2 {
+        stroke: url(#linear-gradient-3);
+      }
+
+      .cls-3 {
+        stroke: url(#linear-gradient-2);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0" y1="20.37" x2="705.94" y2="20.37" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8b56f5"/>
+      <stop offset=".33" stop-color="#eb5ce3"/>
+      <stop offset=".67" stop-color="#f09a78"/>
+      <stop offset="1" stop-color="#60d0cd"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1=".12" y1="21.83" x2="705.92" y2="21.83" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1=".12" y1="18.28" x2="705.94" y2="18.28" xlink:href="#linear-gradient"/>
+  </defs>
+  <polyline class="cls-1" points=".32 27.25 13.67 32.35 79.34 15.65 179.3 32.27 341.76 8.36 428.02 30.57 470.01 12.01 598.83 13.79 663.93 26.6 705.82 21.09"/>
+  <polyline class="cls-3" points=".32 25.4 55.55 37.9 168.05 16.78 314.18 27.34 413.05 5.76 508.12 28.5 662.94 6.42 705.82 11.18"/>
+  <polyline class="cls-2" points=".32 23.38 33.68 15.72 139.06 35.65 263.93 30.32 380.3 .94 464.74 28.62 575.23 2.79 705.82 20.36"/>
+</svg>

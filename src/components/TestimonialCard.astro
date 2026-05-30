@@ -1,0 +1,83 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  quote: string;
+  author: string;
+  role: string;
+  avatar: ImageMetadata;
+}
+
+const { quote, author, role, avatar } = Astro.props;
+---
+
+<article class="t-card">
+  <blockquote class="t-quote">
+    {quote}
+  </blockquote>
+  <div class="t-author">
+    <img src={avatar.src} alt={`${author}`} class="t-avatar-img" width="52" height="52" loading="lazy" />
+    <div class="t-info">
+      <h4>{author}</h4>
+      <span>{role}</span>
+    </div>
+  </div>
+</article>
+
+<style>
+  .t-card {
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .t-quote {
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: var(--text);
+    position: relative;
+    padding-top: 4px;
+    flex: 1;
+    margin: 0;
+    font-style: normal;
+  }
+  .t-quote::before {
+    content: '\201C';
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 52px;
+    line-height: 0.7;
+    color: var(--violet);
+    margin-bottom: 10px;
+  }
+  .t-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .t-avatar-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid rgba(149, 84, 255, 0.4);
+  }
+  .t-info h4 {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+  .t-info span {
+    font-size: 12px;
+    color: var(--violet);
+    font-weight: 500;
+  }
+</style>

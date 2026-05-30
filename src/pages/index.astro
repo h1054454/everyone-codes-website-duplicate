@@ -1,0 +1,39 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/Hero.astro';
+import Divider from '~/components/Divider.astro';
+import MissionSection from '~/components/MissionSection.astro';
+import ProgrammesSection from '~/components/ProgrammesSection.astro';
+import LogoCarousel from '~/components/LogoCarousel.astro';
+import TestimonialsSection from '~/components/TestimonialsSection.astro';
+import AwardsSection from '~/components/AwardsSection.astro';
+import TeamSection from '~/components/TeamSection.astro';
+import CareerCTA from '~/components/CareerCTA.astro';
+import ContactSection from '~/components/ContactSection.astro';
+---
+
+<PageLayout
+  title="everyone codes – Your career in IT starts here"
+  description="everyone codes gGmbH — high-quality coding education for everyone. Programmes for career switchers in Vienna, fully funded by AMS."
+>
+  <Hero
+    headline={'Your career in IT\nstarts here'}
+    subtitle="With our high-quality education programmes, we help people start a better professional future in the IT industry."
+    ctaLabel="Learn More ↓"
+    ctaHref="#mission"
+  />
+  <Divider />
+  <MissionSection />
+  <Divider />
+  <ProgrammesSection />
+  <Divider />
+  <LogoCarousel />
+  <Divider />
+  <TestimonialsSection />
+  <Divider />
+  <AwardsSection />
+  <Divider />
+  <TeamSection />
+  <CareerCTA />
+  <ContactSection />
+</PageLayout>

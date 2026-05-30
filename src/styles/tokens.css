@@ -1,0 +1,66 @@
+/* ─────────────────────────────────────────────────────────────
+ * everyone codes — Design Tokens
+ * Source of Truth: official Design Guide PPT
+ * (Drive Shared Drive 0ALfm5oElr3IqUk9PVA → "Design guide.pptx")
+ * ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── BRAND COLORS — MAIN (most used) ─────────────────────── */
+  --color-violet:  #9554FF;
+  --color-cyan:    #00D4CF;
+  --color-coral:   #FF9670;
+
+  /* ─── BRAND COLORS — ACCENT (attention) ───────────────────── */
+  --color-deep-purple: #2D1654;
+  --color-dark-navy:   #140B29;
+
+  /* ─── BRAND COLORS — BASE (highlights, rarely standalone) ── */
+  --color-blue:        #0D93FF;
+  --color-light-green: #ADFF82;
+  --color-lime:        #DAFF54;
+  --color-orange:      #FFC75F;
+  --color-magenta:     #FF4DEB;
+
+  /* ─── SEMANTIC ─────────────────────────────────────────────── */
+  --bg-body:       var(--color-dark-navy);
+  --bg-card:       #1E1542;                       /* slightly lighter card bg */
+  --text-primary:  #FFFFFF;
+  --text-body:     rgba(255, 255, 255, 0.85);
+  --text-muted:    rgba(255, 255, 255, 0.65);     /* erhöht von 0.5 für WCAG-AA */
+
+  /* ─── TYPOGRAPHY ───────────────────────────────────────────── */
+  --font-heading: 'Josefin Sans Variable', system-ui, sans-serif;
+  --font-body:    'Poppins', system-ui, sans-serif;
+  --font-mono:    'Nanum Gothic Coding', monospace;   /* für Code-Snippets, optional */
+  --font-accent:  'Cormorant Garamond', serif;        /* selten, für besondere Akzente */
+
+  /* ─── SPACING ──────────────────────────────────────────────── */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  32px;
+  --space-xl:  64px;
+  --space-2xl: 128px;
+
+  /* ─── LAYOUT ───────────────────────────────────────────────── */
+  --container-max:  1080px;
+  --border-radius:  4px;
+
+  /* ─── BACKWARD-COMPAT ALIASES ──────────────────────────────
+   * Short names matching the existing Duplicate CSS patterns.
+   * Required so the migrated Component-CSS keeps rendering
+   * without a global rewrite (see research-phase1.md Q1 / R1).
+   * In Phase 5 (Polish) one could converge to long names everywhere.
+   * ────────────────────────────────────────────────────────── */
+  --bg:       var(--bg-body);
+  --bg2:      #160F32;                        /* slightly darker for tonal variation */
+  --card:     var(--bg-card);
+  --magenta:  var(--color-magenta);
+  --violet:   var(--color-violet);
+  --lime:     var(--color-lime);
+  --coral:    var(--color-coral);
+  --cyan:     var(--color-cyan);
+  --white:    var(--text-primary);
+  --text:     var(--text-body);
+  --muted:    var(--text-muted);
+}
