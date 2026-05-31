@@ -1,4 +1,6 @@
 ---
+import polygonBg from '~/assets/brand/bg-stars.png';
+
 interface Props {
   id?: string;
 }
@@ -6,7 +8,7 @@ interface Props {
 const { id = 'mission' } = Astro.props;
 ---
 
-<section {id}>
+<section {id} style={`background-image:url(${polygonBg.src})`}>
   <div class="container">
     <h2 class="section-title">Our Mission</h2>
     <div class="mission-body">
@@ -27,9 +29,13 @@ const { id = 'mission' } = Astro.props;
 </section>
 
 <style>
+  /* Mission section has its own polygon+flag+planets background.
+   * Text is left-aligned matching the live site (Ta(start)). */
   section {
-    background: transparent;
-    text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: left;
   }
   .section-title {
     font-size: clamp(26px, 3.5vw, 42px);
@@ -39,8 +45,7 @@ const { id = 'mission' } = Astro.props;
   }
   .mission-body {
     max-width: 680px;
-    margin: 0 auto;
-    text-align: center;
+    text-align: left;
   }
   .mission-body h3 {
     font-family: var(--font-heading);

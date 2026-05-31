@@ -1,4 +1,6 @@
 ---
+import wireframeBg from '~/assets/brand/dodeca-wireframe.png';
+
 interface Props {
   headline: string;
   subtitle: string;
@@ -10,7 +12,7 @@ const { headline, subtitle, ctaLabel, ctaHref } = Astro.props;
 const headlineHtml = headline.replace(/\n/g, '<br/>');
 ---
 
-<section class="hero">
+<section class="hero" style={`background-image:url(${wireframeBg.src})`}>
   <div class="hero-inner">
     <div class="hero-content">
       <h1 set:html={headlineHtml}></h1>
@@ -29,6 +31,11 @@ const headlineHtml = headline.replace(/\n/g, '<br/>');
     display: flex;
     align-items: center;
     padding: 80px 0;
+    /* The wireframe-dodecahedron is anchored right; text reads left.
+     * Section bg sits on top of the body's star-field. */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right center;
   }
   .hero-inner {
     max-width: 1080px;

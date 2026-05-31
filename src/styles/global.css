@@ -34,22 +34,21 @@ html {
 }
 
 /* ─── BODY ────────────────────────────────────────────────── */
-/* Body-Background: dodeca-wireframe.png ist das filigrane Drahtgitter-
- * Dodecahedron rechts mit mehrschichtigen violet/cyan/magenta Hauptkanten
- * + gestrichelten Hilfslinien für hidden edges (technische Zeichnung-Optik).
- * Originalname "everyone codes background for Google Meet.png" — dasselbe
- * Asset wird auf der Live-Seite als Hero-Background eingesetzt (per JS
- * injiziert, daher nicht im statischen HTML sichtbar).
+/* Body-Background: bg-stars-only.jpg = pure star-field (1920x1080),
+ * identical to image-e3b82.jpeg on the live site (Live uses this for
+ * almost every section except hero/mission/contact).
+ * cover + fixed + center = stable backdrop that doesn't move during scroll.
  *
- * bg-stars.png (das Polygon mit Flag+Planeten) bleibt für die Mission-
- * Section reserviert (Live: dodeca-stars-bg-2.png im Mission-Bereich). */
+ * Per-section backgrounds layer ON TOP (Hero gets the wireframe-dodeca,
+ * Mission gets the polygon+flag+planets, Contact gets wave-lines).
+ * The body-bg shows through any section whose own bg is transparent. */
 body {
   font-family: var(--font-body);
   background-color: var(--bg);
-  background-image: url('../assets/brand/dodeca-wireframe.png');
+  background-image: url('../assets/brand/bg-stars-only.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right top;
+  background-position: center;
   background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;

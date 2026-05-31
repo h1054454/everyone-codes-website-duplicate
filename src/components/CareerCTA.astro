@@ -8,9 +8,28 @@ const { id = 'career' } = Astro.props;
 
 <section {id}>
   <div class="container">
-    <h2>We're hiring!</h2>
+    <h2 class="section-title">Career</h2>
+    <p class="section-intro">
+      We are continuously seeking to expand our team with innovative, compassionate
+      individuals who share our vision and values.
+    </p>
 
     <div class="career-cards">
+      <article class="job-card">
+        <h3>Software Developer who enjoys teaching</h3>
+        <div class="job-card-divider"></div>
+        <p>
+          Join everyone codes as a mentor, helping people and changing lives through teaching!
+        </p>
+        <p class="job-start">Start immediately</p>
+        <a
+          href="https://drive.google.com/drive/folders/1XQyVuJoCCHfwYRWWcGRG3LFvN5MXjFlA"
+          target="_blank"
+          rel="noopener"
+          class="btn-job"
+        >View →</a>
+      </article>
+
       <article class="job-card">
         <h3>Civilian Servant</h3>
         <div class="job-card-divider"></div>
@@ -19,7 +38,7 @@ const { id = 'career' } = Astro.props;
           Dive into tasks like course support, website updates, and tech setup while gaining
           real experience in a fun, collaborative team.
         </p>
-        <p class="job-start">Start July or October 2026</p>
+        <p class="job-start">Start July or October 2027</p>
         <a
           href="https://drive.google.com/file/d/1qecf9BqbyaQRCZ4RWWK8OCMoNB1Qh3bl/view"
           target="_blank"
@@ -32,16 +51,24 @@ const { id = 'career' } = Astro.props;
 </section>
 
 <style>
+  /* Career section is transparent — body-bg (star-field) shows through,
+   * matching the live site which uses image-e3b82.jpeg (stars only). */
   section {
-    background: linear-gradient(135deg, #0d0820 0%, #1c0d3e 50%, #251060 100%);
+    background: transparent;
     text-align: center;
     padding: 100px 24px;
-    border-top: 1px solid rgba(149, 84, 255, 0.2);
   }
-  h2 {
+  .section-title {
     font-size: clamp(26px, 4vw, 42px);
     margin-bottom: 16px;
     color: var(--white);
+  }
+  .section-intro {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text);
+    max-width: 720px;
+    margin: 0 auto 40px;
   }
   .career-cards {
     display: flex;
@@ -59,13 +86,15 @@ const { id = 'career' } = Astro.props;
     width: 100%;
     text-align: left;
     box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
   }
   .job-card h3 {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--white);
     margin-bottom: 14px;
-    line-height: 1.2;
+    line-height: 1.25;
   }
   .job-card-divider {
     height: 3px;
@@ -86,6 +115,7 @@ const { id = 'career' } = Astro.props;
     font-weight: 700;
     font-size: 16px;
     color: var(--white);
+    margin-top: auto;
     margin-bottom: 28px;
   }
   .btn-job {
@@ -102,6 +132,7 @@ const { id = 'career' } = Astro.props;
     border-radius: 50px;
     transition: background 0.2s, color 0.2s;
     cursor: pointer;
+    align-self: flex-start;
   }
   .btn-job:hover,
   .btn-job:focus-visible {
