@@ -42,20 +42,21 @@ const team = [
     color: var(--white);
     margin-bottom: 24px;
   }
+  /* Flex layout matching Squarespace live: wrap, 24px gap, justify center
+   * so the trailing row centers nicely when the count doesn't fit a full row. */
   .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 24px;
     margin-top: 48px;
   }
-  @media (max-width: 860px) {
-    .team-grid {
-      grid-template-columns: 1fr 1fr;
-    }
+  .team-grid > * {
+    flex: 0 1 232px;
   }
   @media (max-width: 540px) {
-    .team-grid {
-      grid-template-columns: 1fr 1fr;
+    .team-grid > * {
+      flex: 0 1 calc(50% - 12px);
     }
   }
 </style>
