@@ -1,5 +1,5 @@
 ---
-import dividerImg from '~/assets/brand/divider-triple-short.svg';
+import dividerImg from '~/assets/brand/divider-triple-long.svg';
 ---
 
 <div class="divider" aria-hidden="true">
@@ -7,15 +7,18 @@ import dividerImg from '~/assets/brand/divider-triple-short.svg';
 </div>
 
 <style>
+  /* Full-width gradient divider (violet → pink → orange → cyan).
+   * Matches the live site's triple-lines-we1e4.png (2100×57). */
   .divider {
-    display: flex;
-    justify-content: center;
-    padding: 6px 0;
+    display: block;
+    padding: 12px 0;
     overflow: hidden;
+    line-height: 0;
   }
   .divider img {
-    width: 180px;
+    width: 100%;
     height: auto;
-    max-height: 24px;
+    max-height: 48px;
+    display: block;
   }
 </style>
