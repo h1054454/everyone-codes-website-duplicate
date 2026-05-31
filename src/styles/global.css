@@ -34,17 +34,22 @@ html {
 }
 
 /* ─── BODY ────────────────────────────────────────────────── */
-/* Body-Background: bg-stars.png ist die zusammengesetzte Komposition
- * (Sterne + großes Dodecahedron + Planeten rechts, 1920x1080),
- * identisch zur Live-Seite (dodeca-stars-bg-2.png im pagecloud-CDN).
- * cover + right-center hält das Dodecahedron rechts im Viewport sichtbar. */
+/* Body-Background: dodeca-wireframe.png ist das filigrane Drahtgitter-
+ * Dodecahedron rechts mit mehrschichtigen violet/cyan/magenta Hauptkanten
+ * + gestrichelten Hilfslinien für hidden edges (technische Zeichnung-Optik).
+ * Originalname "everyone codes background for Google Meet.png" — dasselbe
+ * Asset wird auf der Live-Seite als Hero-Background eingesetzt (per JS
+ * injiziert, daher nicht im statischen HTML sichtbar).
+ *
+ * bg-stars.png (das Polygon mit Flag+Planeten) bleibt für die Mission-
+ * Section reserviert (Live: dodeca-stars-bg-2.png im Mission-Bereich). */
 body {
   font-family: var(--font-body);
   background-color: var(--bg);
-  background-image: url('../assets/brand/bg-stars.png');
+  background-image: url('../assets/brand/dodeca-wireframe.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right top;
+  background-position: center top;
   background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
