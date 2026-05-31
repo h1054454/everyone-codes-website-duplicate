@@ -1,0 +1,138 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+// Sprint A content from legal-from-squarespace.md. Phase 5 will:
+// - Add Spendenbegünstigung (SP3-Bescheid Sep 2025) + BMF-Link
+// - Add Aufsichtsbehörde (Magistratisches Bezirksamt Wien)
+// - Add Unternehmensgegenstand ("gemeinnützige Bildungsarbeit")
+// - Review with Ecovis
+---
+
+<PageLayout
+  title="Imprint – everyone codes"
+  description="Imprint / Impressum of everyone codes gGmbH, a non-profit education NGO based in Vienna, Austria."
+>
+  <section class="legal-page">
+    <div class="container">
+      <h1>Imprint</h1>
+
+      <h2>Company Information</h2>
+      <dl class="info-block">
+        <dt>Name</dt>
+        <dd>everyone codes gGmbH</dd>
+        <dt>Address</dt>
+        <dd>
+          Muthgasse 58/60<br />
+          1190 Vienna<br />
+          Austria
+        </dd>
+      </dl>
+
+      <h2>Contact</h2>
+      <dl class="info-block">
+        <dt>E-Mail</dt>
+        <dd><a href="mailto:office@everyonecodes.io">office@everyonecodes.io</a></dd>
+        <dt>Phone</dt>
+        <dd><a href="tel:+436812050173">+43 681 205 017 39</a></dd>
+      </dl>
+
+      <h2>Registration Details</h2>
+      <dl class="info-block">
+        <dt>Registry Number</dt>
+        <dd>FN 504101a</dd>
+        <dt>VAT Number</dt>
+        <dd>ATU74031102</dd>
+        <dt>Chamber Membership</dt>
+        <dd>Member of the Austrian Chamber of Commerce (WKÖ)</dd>
+      </dl>
+
+      <h2>Banking Information</h2>
+      <dl class="info-block">
+        <dt>Bank</dt>
+        <dd>Erste Bank Oesterreich</dd>
+        <dt>BIC</dt>
+        <dd><code>GIBAATWWXXX</code></dd>
+        <dt>IBAN</dt>
+        <dd><code>AT88 2011 1840 1922 1900</code></dd>
+      </dl>
+
+      <h2>Management</h2>
+      <dl class="info-block">
+        <dt>Managing Director</dt>
+        <dd>Edina Hadziahmetovic</dd>
+      </dl>
+
+      <!--
+        TODO Phase 5 — legal review with Ecovis:
+        - Add Spendenbegünstigung (SP3-Bescheid Sep 2025) + link to
+          https://service.bmf.gv.at/service/allg/spenden/show_mast.asp
+        - Add Aufsichtsbehörde: Magistratisches Bezirksamt Wien
+        - Add Unternehmensgegenstand: "gemeinnützige Bildungsarbeit (gGmbH)"
+        - Add Verbraucherstreitbeilegung-Link if applicable
+      -->
+
+      <p class="last-updated">Last updated: 2026-05-31</p>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .legal-page {
+    padding: 80px 24px;
+    min-height: 60vh;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    color: var(--white);
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-size: clamp(20px, 2.5vw, 26px);
+    color: var(--magenta);
+    margin: 36px 0 14px;
+  }
+  .info-block {
+    margin-bottom: 20px;
+  }
+  .info-block dt {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 12px;
+    margin-bottom: 4px;
+  }
+  .info-block dd {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 0;
+  }
+  .info-block dd a {
+    color: var(--violet);
+  }
+  .info-block dd a:hover {
+    color: var(--magenta);
+    text-decoration: underline;
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: rgba(149, 84, 255, 0.12);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .last-updated {
+    margin-top: 56px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 16px;
+  }
+</style>

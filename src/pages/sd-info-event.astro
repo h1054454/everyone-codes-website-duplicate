@@ -1,0 +1,207 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+// Sprint A: minimal page mirroring live everyonecodes.io/sd-info-event.
+// The Google Meet link is the canonical join URL — Sprint B can promote
+// it to a CMS field if it changes often.
+const meetUrl = 'https://meet.google.com/nkt-sjht-qhu';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<PageLayout
+  title="Software Development Info Event – everyone codes"
+  description="Mandatory info event for applicants to our AMS-funded Software Development programme in Vienna. Join via Google Meet."
+>
+  <section class="info-event">
+    <div class="container">
+      <span class="eyebrow">Software Development Vienna</span>
+      <h1>Info Event</h1>
+      <p class="lede">
+        Learn about our 10-month AMS-funded Software Development programme directly from
+        our mentors. Bring your questions — this is also the moment to find out if the
+        programme is the right fit for you.
+      </p>
+
+      <div class="cta-block">
+        <a href={meetUrl} target="_blank" rel="noopener" class="btn-primary">
+          Join Now ↗
+        </a>
+        <p class="meet-note">
+          Opens Google Meet in a new tab. We jump straight in, no waiting room.
+        </p>
+      </div>
+
+      <div class="mandatory-box" role="note">
+        <div class="mandatory-icon" aria-hidden="true">⚠</div>
+        <div>
+          <strong>Mandatory for AMS-programme application</strong>
+          <p>
+            You can only register for the Software Development programme if you
+            participated in this info event. Bring your AMS Advisor's TAS Number to
+            speed up the application afterwards.
+          </p>
+        </div>
+      </div>
+
+      <div class="next-steps">
+        <h2>Next steps</h2>
+        <ol>
+          <li>
+            Join the info event via the link above and meet our team
+          </li>
+          <li>
+            Read the programme details:
+            <a href={`${base}/programmes/software-development-vienna`}>Software Development Vienna</a>
+          </li>
+          <li>
+            Register via your AMS Advisor (TAS Number <strong>824929/1</strong>)
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .info-event {
+    padding: 100px 24px 80px;
+    min-height: 70vh;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    background: var(--lime);
+    color: var(--bg);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.1;
+    margin-bottom: 22px;
+    color: var(--white);
+  }
+  .lede {
+    font-size: 17px;
+    color: var(--text);
+    line-height: 1.75;
+    max-width: 620px;
+    margin: 0 auto 40px;
+  }
+
+  .cta-block {
+    margin: 0 auto 48px;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 18px 44px;
+    background: linear-gradient(90deg, var(--magenta) 0%, var(--violet) 100%);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+    border-radius: 999px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus-visible {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  .meet-note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .mandatory-box {
+    background: rgba(255, 199, 95, 0.08);
+    border: 1px solid var(--orange);
+    border-radius: 10px;
+    padding: 22px 28px;
+    margin: 0 auto 56px;
+    text-align: left;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    max-width: 640px;
+  }
+  .mandatory-icon {
+    font-size: 22px;
+    color: var(--orange);
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .mandatory-box strong {
+    display: block;
+    color: var(--white);
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .mandatory-box p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .next-steps {
+    text-align: left;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .next-steps h2 {
+    font-size: clamp(20px, 2.5vw, 28px);
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .next-steps ol {
+    list-style: none;
+    counter-reset: step;
+  }
+  .next-steps li {
+    counter-increment: step;
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text);
+    padding-left: 36px;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .next-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    background: var(--violet);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .next-steps a {
+    color: var(--violet);
+    text-decoration: underline;
+  }
+  .next-steps a:hover {
+    color: var(--magenta);
+  }
+</style>

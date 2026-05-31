@@ -37,6 +37,29 @@ const programmes = defineCollection({
     intake_status: z.enum(['open', 'closed', 'upcoming']).default('upcoming'),
     short_description: z.string(),
     order: z.number().default(99),
+    // Phase 3: detail-page fields. All optional so the homepage's
+    // ProgrammesSection card (which only needs title + short_description)
+    // keeps working without these.
+    hard_facts: z
+      .object({
+        start: z.string().optional(),
+        end: z.string().optional(),
+        schedule: z.array(z.string()).optional(),
+        hours_per_week: z.string().optional(),
+        format: z.string().optional(),
+        self_study_hours: z.string().optional(),
+        language: z.string().optional(),
+        location: z.string().optional(),
+        tas_number: z.string().optional(),
+      })
+      .optional(),
+    apply_info: z
+      .object({
+        info_webinar: z.string().optional(),
+        registration_deadline: z.string().optional(),
+        mandatory_webinar: z.boolean().default(true),
+      })
+      .optional(),
   }),
 });
 

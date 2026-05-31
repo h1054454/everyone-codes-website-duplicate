@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     <ul class="nav-links">
       <li>
-        <a href="#" aria-haspopup="true">About Us <span class="caret" aria-hidden="true">▾</span></a>
+        <a href={`${base}/#mission`} aria-haspopup="true">About Us <span class="caret" aria-hidden="true">▾</span></a>
         <div class="dropdown" role="menu">
           <a href={`${base}/#mission`} role="menuitem">Mission</a>
           <a href={`${base}/#testimonials`} role="menuitem">Stories</a>
@@ -23,13 +23,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </div>
       </li>
       <li>
-        <a href="#" aria-haspopup="true">AMS Programmes <span class="caret" aria-hidden="true">▾</span></a>
+        <a href={`${base}/programmes/software-development-vienna`} aria-haspopup="true">AMS Programmes <span class="caret" aria-hidden="true">▾</span></a>
         <div class="dropdown" role="menu">
           <a href={`${base}/programmes/software-development-vienna`} role="menuitem">Software Development (Vienna)</a>
         </div>
       </li>
       <li>
-        <a href="#" aria-haspopup="true">For Companies <span class="caret" aria-hidden="true">▾</span></a>
+        <a href={`${base}/for-companies/work-with-us`} aria-haspopup="true">For Companies <span class="caret" aria-hidden="true">▾</span></a>
         <div class="dropdown" role="menu">
           <a href={`${base}/for-companies/work-with-us`} role="menuitem">Work with us</a>
           <a href={`${base}/for-companies/hire-graduates`} role="menuitem">Hire our graduates</a>

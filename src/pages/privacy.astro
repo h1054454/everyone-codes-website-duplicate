@@ -1,0 +1,176 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+// SPRINT A PLACEHOLDER — the live Squarespace privacy policy has issues
+// (CCPA-section, "Marketing and promotional purposes", outdated Apr 2024).
+// Phase 5 rewrites this from scratch using the 10-point structure from
+// plan-section 5.4. For Sprint A we have a minimal-but-honest placeholder
+// that points at office@ for data-subject requests and lists Cloudflare/
+// GitHub as processors.
+---
+
+<PageLayout
+  title="Privacy Policy – everyone codes"
+  description="Privacy policy of everyone codes gGmbH — how we handle visitor data on everyonecodes.io."
+>
+  <section class="legal-page">
+    <div class="container">
+      <h1>Privacy Policy</h1>
+
+      <p class="lede">
+        everyone codes gGmbH ("we", "us") takes the privacy of visitors to our website
+        seriously. This page explains what data we collect, why, and what your rights
+        are under the EU General Data Protection Regulation (GDPR).
+      </p>
+
+      <!--
+        TODO Phase 5 — full rewrite with Ecovis review.
+        Source: docs/plans/website-replatform/legal-from-squarespace.md
+        Problems with the live Squarespace version (must NOT carry over):
+          1. CCPA section — irrelevant for an AT NGO, generic template noise
+          2. "Marketing and promotional purposes" — contradicts our no-tracker stance
+          3. Outdated stand date (24.04.2024)
+          4. No concrete retention periods
+          5. Processors not listed
+          6. No mention of the right to lodge a complaint
+          7. No Spendenbegünstigung note (Finanzonline reporting)
+      -->
+
+      <h2>1. Controller</h2>
+      <p>
+        everyone codes gGmbH, Muthgasse 58/60, 1190 Vienna, Austria. Email:
+        <a href="mailto:office@everyonecodes.io">office@everyonecodes.io</a>.
+        Full company details in the <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/imprint`}>Imprint</a>.
+      </p>
+
+      <h2>2. What data we process</h2>
+      <p>
+        Our site is intentionally lean: <strong>we use no third-party analytics, no
+        marketing cookies, and no tracking pixels</strong>. The data we do process:
+      </p>
+      <ul>
+        <li>
+          <strong>Server logs</strong> (IP address, browser type, requested URL,
+          timestamp) — automatically processed by our hosting provider for operational
+          security. Not used for analytics.
+        </li>
+        <li>
+          <strong>Contact data you provide</strong> when you email us (name, email,
+          message content) — used only to respond to your inquiry.
+        </li>
+        <li>
+          <strong>Donation data</strong> when you donate and ask us to file a
+          Spendenbegünstigung report (name, date of birth, address, amount) — submitted
+          to Finanzonline as required by Austrian tax law (§ 4a EStG).
+        </li>
+      </ul>
+
+      <h2>3. Processors we use</h2>
+      <ul>
+        <li>
+          <strong>Cloudflare</strong> (EU datacenters) — content delivery and DDoS
+          protection. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Privacy Policy</a>
+        </li>
+        <li>
+          <strong>GitHub</strong> (Microsoft Ireland) — repository hosting. Static site
+          assets are served from this infrastructure during the Sprint-A phase.
+          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Privacy Policy</a>
+        </li>
+      </ul>
+      <p>Both have signed standard Data Processing Agreements (DPAs).</p>
+
+      <h2>4. Your rights under GDPR</h2>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access the data we hold about you (Art. 15 GDPR)</li>
+        <li>Rectification of inaccurate data (Art. 16)</li>
+        <li>Erasure (Art. 17)</li>
+        <li>Restriction of processing (Art. 18)</li>
+        <li>Data portability (Art. 20)</li>
+        <li>Object to processing (Art. 21)</li>
+        <li>
+          Lodge a complaint with the Austrian Data Protection Authority
+          (<a href="https://www.dsb.gv.at/" target="_blank" rel="noopener">dsb.gv.at</a>)
+        </li>
+      </ul>
+      <p>
+        To exercise any of these rights, email us at
+        <a href="mailto:office@everyonecodes.io">office@everyonecodes.io</a>.
+      </p>
+
+      <h2>5. Retention</h2>
+      <p>
+        Server logs are kept for 30 days. Email correspondence is kept as long as
+        operationally relevant (typically 2 years). Donation data is kept for 7 years
+        as required by Austrian tax law.
+      </p>
+
+      <h2>6. Children</h2>
+      <p>
+        Our services are not directed to children under 13. We do not knowingly collect
+        personal data from minors.
+      </p>
+
+      <p class="last-updated">
+        Last updated: 2026-05-31 &nbsp;·&nbsp;
+        <em>Full review and update by Ecovis is planned for Phase 5 of our website
+        relaunch.</em>
+      </p>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .legal-page {
+    padding: 80px 24px;
+    min-height: 60vh;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .lede {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-size: clamp(20px, 2.5vw, 26px);
+    color: var(--magenta);
+    margin: 36px 0 14px;
+  }
+  p,
+  li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  ul {
+    list-style: disc;
+    padding-left: 22px;
+    margin-bottom: 18px;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+  a {
+    color: var(--violet);
+    text-decoration: underline;
+  }
+  a:hover {
+    color: var(--magenta);
+  }
+  .last-updated {
+    margin-top: 56px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 16px;
+  }
+</style>

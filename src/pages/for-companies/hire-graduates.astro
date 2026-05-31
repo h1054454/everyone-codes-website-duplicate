@@ -1,0 +1,231 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import Divider from '~/components/Divider.astro';
+
+const subject = encodeURIComponent('Hire our graduates — inquiry');
+const body = encodeURIComponent(
+  `Hello everyone codes team,
+
+We are interested in hiring graduates from your programme.
+
+Company:
+Contact name:
+Phone:
+What we're looking for:
+
+Best regards,`
+);
+const mailto = `mailto:office@everyonecodes.io?subject=${subject}&body=${body}`;
+---
+
+<PageLayout
+  title="Hire our graduates – everyone codes"
+  description="Hire highly motivated IT professionals from everyone codes. Our graduates are equipped with technical and soft skills for Austria's IT industry."
+>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Employ highly motivated<br />IT professionals</h1>
+      <p class="lede">
+        We equip our graduates with the necessary hard and soft skills to start a new
+        career in Austria's top companies!
+      </p>
+      <a href="#contact" class="btn-primary">Contact us!</a>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="why-section">
+    <div class="container">
+      <h2>Why hire our graduates?</h2>
+      <p>
+        Our application process is designed to find the most talented and motivated
+        participants for our programmes. Besides the basic knowledge, we also test the
+        ability of logical thinking, communication, self-expression, and teamwork.
+      </p>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="skills-section">
+    <div class="container">
+      <h2>Skills our graduates have</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Coding Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Spring</span>
+            <span class="skill-tag">Maven</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">IntelliJ IDEA</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Shell</span>
+            <span class="skill-tag">HTTP</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Newcomer Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Mindstorms</span>
+            <span class="skill-tag">Micro:bit</span>
+            <span class="skill-tag">MakeCode</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>UX Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Adobe XD</span>
+            <span class="skill-tag">Miro</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Soft Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Time Management</span>
+            <span class="skill-tag">Critical Thinking &amp; Problem Solving</span>
+            <span class="skill-tag">Teamwork &amp; Collaboration</span>
+            <span class="skill-tag">Growth Mindset</span>
+            <span class="skill-tag">Self-Presentation</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Self-Management &amp; Self-Motivation</span>
+            <span class="skill-tag">Ambition &amp; Work Ethic</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <h2>Get in touch</h2>
+      <p>
+        Interested in hiring our graduates? Send us an email and we'll get back to you
+        as soon as possible.
+      </p>
+      <a href={mailto} class="btn-primary">Email us</a>
+      <p class="contact-direct">
+        Or directly:
+        <a href="mailto:office@everyonecodes.io">office@everyonecodes.io</a>
+      </p>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .page-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 100px 24px 60px;
+  }
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .page-hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+  .page-hero .lede {
+    font-size: 18px;
+    color: var(--text);
+    max-width: 580px;
+    margin: 0 auto 36px;
+    line-height: 1.75;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 34px;
+    background: linear-gradient(90deg, var(--magenta) 0%, var(--violet) 100%);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    border-radius: 999px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus-visible {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  .why-section,
+  .contact-section {
+    padding: 80px 24px;
+  }
+  .skills-section {
+    padding: 80px 24px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  section h2 {
+    font-size: clamp(26px, 3.5vw, 40px);
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+  .why-section p,
+  .contact-section p {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.85;
+    max-width: 700px;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 48px;
+  }
+  .skill-group h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 16px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-tag {
+    background: rgba(149, 84, 255, 0.1);
+    border: 1px solid rgba(149, 84, 255, 0.25);
+    color: var(--text);
+    font-size: 13px;
+    padding: 5px 14px;
+    border-radius: 50px;
+  }
+  .contact-section {
+    text-align: center;
+  }
+  .contact-section p {
+    margin: 0 auto 32px;
+  }
+  .contact-direct {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .contact-direct a {
+    color: var(--violet);
+  }
+  @media (max-width: 860px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

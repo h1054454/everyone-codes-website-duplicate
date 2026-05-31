@@ -1,0 +1,270 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const ibanRaw = 'AT882011184019221900';
+const ibanPretty = 'AT88 2011 1840 1922 1900';
+
+const subject = encodeURIComponent('Spende — Daten für Spendenbescheinigung');
+const body = encodeURIComponent(
+  `Hallo everyone codes Team,
+
+ich habe an euch gespendet und möchte, dass meine Spende dem Finanzamt
+zur automatischen Berücksichtigung in der Arbeitnehmerveranlagung
+gemeldet wird.
+
+Vor- und Nachname:
+Geburtsdatum:
+Adresse:
+Überwiesener Betrag:
+Überweisungsdatum:
+
+Liebe Grüße,`
+);
+const mailto = `mailto:office@everyonecodes.io?subject=${subject}&body=${body}`;
+---
+
+<PageLayout
+  title="Spenden – everyone codes"
+  description="Unterstützen Sie unsere Mission. everyone codes gGmbH ist seit September 2025 spendenbegünstigt — Ihre Spende ist steuerlich absetzbar."
+  lang="de"
+>
+  <section class="donate-page">
+    <div class="container">
+      <h1>Spenden Sie an everyone codes</h1>
+
+      <p class="lede">
+        Mit Ihrer Spende unterstützen Sie unsere Mission, IT-Bildung für alle zugänglich
+        zu machen.
+        <strong>everyone codes gGmbH ist seit September 2025 spendenbegünstigt</strong>
+        (SP3-Bescheid Finanzamt) — Ihre Spende ist steuerlich absetzbar. Mehr Informationen
+        auf der
+        <a href="https://service.bmf.gv.at/service/allg/spenden/show_mast.asp" target="_blank" rel="noopener">
+          Liste der spendenbegünstigten Einrichtungen des BMF</a>.
+      </p>
+
+      <div class="iban-box">
+        <h2>Bankverbindung</h2>
+        <dl class="iban-list">
+          <div class="row">
+            <dt>Empfänger</dt>
+            <dd>everyone codes gGmbH</dd>
+          </div>
+          <div class="row iban-row">
+            <dt>IBAN</dt>
+            <dd>
+              <code id="iban-value">{ibanPretty}</code>
+              <button
+                type="button"
+                id="copy-iban-btn"
+                class="copy"
+                data-clipboard={ibanRaw}
+                aria-label="IBAN in die Zwischenablage kopieren"
+              >
+                Kopieren
+              </button>
+            </dd>
+          </div>
+          <div class="row">
+            <dt>BIC</dt>
+            <dd><code>GIBAATWWXXX</code></dd>
+          </div>
+          <div class="row">
+            <dt>Bank</dt>
+            <dd>Erste Bank</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="spender-form">
+        <h2>Für Ihre Spendenbescheinigung</h2>
+        <p>
+          Damit wir Ihre Spende beim Finanzamt für Sie melden können (automatische
+          Berücksichtigung in der Arbeitnehmerveranlagung), senden Sie uns bitte
+          folgende Daten per E-Mail an
+          <a href={mailto}>office@everyonecodes.io</a>:
+        </p>
+        <ul>
+          <li>Vor- und Nachname</li>
+          <li>Geburtsdatum</li>
+          <li>Adresse (zwingend für Finanzonline-Meldung)</li>
+          <li>Überwiesener Betrag und Datum</li>
+        </ul>
+        <a href={mailto} class="btn-primary">E-Mail vorbereiten</a>
+        <p class="privacy-note">
+          Die Daten werden ausschließlich zur Meldung an Finanzonline verwendet und
+          7 Jahre lang aufbewahrt (gesetzliche Aufbewahrungspflicht). Details siehe
+          <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/privacy`}>Datenschutzerklärung</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /* Copy IBAN to clipboard, swap button text briefly on success. */
+    const btn = document.getElementById('copy-iban-btn');
+    if (btn) {
+      btn.addEventListener('click', async () => {
+        const iban = btn.getAttribute('data-clipboard') ?? '';
+        const original = btn.textContent;
+        try {
+          await navigator.clipboard.writeText(iban);
+          btn.textContent = 'Kopiert ✓';
+          btn.classList.add('copied');
+        } catch {
+          btn.textContent = 'Manuell kopieren';
+        }
+        window.setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</PageLayout>
+
+<style>
+  .donate-page {
+    padding: 80px 24px;
+    min-height: 60vh;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .lede {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.85;
+    margin-bottom: 48px;
+  }
+  .lede a {
+    color: var(--violet);
+    text-decoration: underline;
+  }
+  .lede a:hover {
+    color: var(--magenta);
+  }
+  h2 {
+    font-size: clamp(20px, 2.5vw, 26px);
+    color: var(--magenta);
+    margin-bottom: 18px;
+  }
+
+  .iban-box {
+    background: var(--card);
+    border: 1px solid rgba(149, 84, 255, 0.3);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .iban-list .row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .iban-list .row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .iban-list dt {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    align-self: center;
+  }
+  .iban-list dd {
+    margin: 0;
+    color: var(--white);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: rgba(149, 84, 255, 0.12);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+  .copy {
+    background: var(--violet);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .copy:hover,
+  .copy:focus-visible {
+    background: var(--magenta);
+  }
+  .copy.copied {
+    background: var(--lime);
+    color: var(--bg);
+  }
+
+  .spender-form ul {
+    list-style: disc;
+    padding-left: 22px;
+    margin: 16px 0 28px;
+  }
+  .spender-form p,
+  .spender-form li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .spender-form a {
+    color: var(--violet);
+    text-decoration: underline;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 34px;
+    background: linear-gradient(90deg, var(--magenta) 0%, var(--violet) 100%);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    border-radius: 999px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus-visible {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  .privacy-note {
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 540px) {
+    .iban-list .row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+</style>

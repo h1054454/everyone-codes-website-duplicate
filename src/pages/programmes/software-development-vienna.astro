@@ -1,0 +1,718 @@
+---
+import { getEntry } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+import Divider from '~/components/Divider.astro';
+
+const programme = await getEntry('programmes', 'software-development-vienna');
+if (!programme) throw new Error('Programme software-development-vienna not found');
+
+const hf = programme.data.hard_facts;
+const apply = programme.data.apply_info;
+
+// FAQs are kept hardcoded (research-phase3 F4) — small set, rarely changes.
+// If editor-pflege becomes desirable, can later migrate to a `faqs` collection.
+const faqs = [
+  {
+    q: 'Will I be able to find a job after the programme?',
+    a: 'After completing the programme, you will have the skills and knowledge needed to start working as a Junior Software Developer. Our alumni network and career support help connect you with employers in Austria\'s IT industry.',
+  },
+  {
+    q: 'Do I need any previous experience to participate in the programme?',
+    a: 'No previous programming knowledge is required. We start from the very basics and guide you step by step through the curriculum.',
+  },
+  {
+    q: 'Can I have a full-time or part-time job during the programme?',
+    a: 'The programme is full-time and requires your full commitment. Having an additional job alongside the programme is not recommended as the workload is intensive.',
+  },
+  {
+    q: 'I am not in Vienna! Can I still participate?',
+    a: 'The programme is based in Vienna and combines in-person and online learning. You must be able to attend the in-person days in Vienna.',
+  },
+  {
+    q: 'I am not registered as "unemployed" with AMS Wien. Can I still participate?',
+    a: 'As this is an AMS-funded programme, registration as unemployed with AMS Wien is one of the formal requirements to be eligible to participate.',
+  },
+  {
+    q: 'How much does the programme cost?',
+    a: 'The programme is fully funded by AMS (Arbeitsmarktservice Austria) and is free of charge for eligible participants.',
+  },
+  {
+    q: 'How can I cover my living expenses during the programme?',
+    a: 'During the programme, depending on your personal eligibility, details about this can be discussed with you and your contact person at AMS.',
+  },
+];
+
+const contactSubject = encodeURIComponent('Software Development Vienna — Inquiry');
+const contactBody = encodeURIComponent(
+  `Hello everyone codes team,
+
+I'm interested in the Software Development Vienna programme.
+
+Name:
+Email:
+Message:
+
+Best regards,`
+);
+const contactMailto = `mailto:office@everyonecodes.io?subject=${contactSubject}&body=${contactBody}`;
+const mapsUrl = 'https://www.google.com/maps/place/Muthgasse+58,+1190+Wien';
+---
+
+<PageLayout
+  title="Software Development Vienna – everyone codes"
+  description="Become a Junior Software Developer with our 10-month AMS-funded programme in Vienna. Learn Java, Spring, MySQL and more."
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">AMS Funded</span>
+      <h1>Software Development<br />Vienna</h1>
+      <p class="lede">
+        Become a Junior Software Developer in 10 months. From the basics of Java to
+        back-end development with Spring — fully funded by AMS, with comprehensive
+        career support afterwards.
+      </p>
+      <a href="#contact" class="btn-primary">Get in touch</a>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="page-section">
+    <div class="inner">
+      <h2>Become a Junior Software Developer</h2>
+      <p>
+        Java is one of the most versatile programming languages. Our comprehensive
+        software development programme is designed to guide you through the exciting
+        world of software creation and innovation. This full-time education is
+        calculated to guide you through <strong>Java</strong> and <strong>back-end</strong>
+        development.
+      </p>
+
+      <div class="java-box">
+        <h3>Why learn Java?</h3>
+        <ul>
+          <li>It is fun and you can see fast progress</li>
+          <li>Java is one of the most versatile programming languages — the comprehensive software development guide takes you through the exciting world of software creation and innovation</li>
+          <li>Software Development is one of the highest paying careers in Austria</li>
+          <li>It allows you to be creative and work on your own projects and programmes</li>
+          <li>It is an industry that is in constant growth and will be even more important in the future</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="page-section">
+    <div class="inner">
+      <h2>About the programme</h2>
+      <div class="about-grid">
+        <div>
+          <h3 class="sub-h">What to expect</h3>
+          <ul class="expect-list">
+            <li>Learn and truly understand the <strong>Fundamentals of Programming</strong>, important for any language. In addition, you will dive deeper into the specifics of the programming language <strong>Java</strong></li>
+            <li>Extending basic knowledge of Java with focus on <strong>back-end specialization</strong></li>
+            <li>Learn and truly understand Java frameworks: <strong>Spring Boot</strong> – Web; <strong>Spring Data</strong> – NoSQL, JPA with MySQL; <strong>Spring Security</strong></li>
+            <li>Learn how to create and use <strong>databases (SQL)</strong></li>
+            <li>Learn about <strong>Docker</strong> and using Docker containers</li>
+            <li>Every week: <strong>Lectures</strong>, <strong>Live Coding Sessions</strong>, <strong>Q&amp;A Sessions</strong>, and many <strong>Practical Exercises</strong> to solve with your peers</li>
+            <li>Improve and practice the <strong>soft skills</strong> necessary for Junior Software Developers</li>
+            <li>The programme will be entirely taught in <strong>English</strong></li>
+          </ul>
+        </div>
+
+        {hf && (
+          <div class="hard-facts">
+            <h3>Hard facts</h3>
+            <dl>
+              {hf.start && (
+                <div class="fact-row">
+                  <dt>Duration</dt>
+                  <dd>{programme.data.duration}</dd>
+                </div>
+              )}
+              {hf.start && (
+                <div class="fact-row">
+                  <dt>Start</dt>
+                  <dd class="lime">{hf.start}</dd>
+                </div>
+              )}
+              {hf.end && (
+                <div class="fact-row">
+                  <dt>End</dt>
+                  <dd>{hf.end}</dd>
+                </div>
+              )}
+              {hf.schedule && hf.schedule.length > 0 && (
+                <div class="fact-row">
+                  <dt>Schedule</dt>
+                  <dd>
+                    {hf.schedule.map((line) => <div>{line}</div>)}
+                    {hf.hours_per_week && <div>{hf.hours_per_week}</div>}
+                  </dd>
+                </div>
+              )}
+              {hf.format && (
+                <div class="fact-row">
+                  <dt>Format</dt>
+                  <dd>{hf.format}</dd>
+                </div>
+              )}
+              {hf.self_study_hours && (
+                <div class="fact-row">
+                  <dt>Self-study</dt>
+                  <dd>{hf.self_study_hours}</dd>
+                </div>
+              )}
+              {hf.language && (
+                <div class="fact-row">
+                  <dt>Language</dt>
+                  <dd>{hf.language}</dd>
+                </div>
+              )}
+              {hf.location && (
+                <div class="fact-row">
+                  <dt>Location</dt>
+                  <dd>{hf.location}</dd>
+                </div>
+              )}
+              {hf.tas_number && (
+                <div class="fact-row">
+                  <dt>TAS Number</dt>
+                  <dd>{hf.tas_number}</dd>
+                </div>
+              )}
+            </dl>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {apply && (
+    <section class="page-section apply-section">
+      <div class="apply-box">
+        <h2>Interested? Apply via your AMS Advisor now!</h2>
+        <ul class="apply-list">
+          {apply.info_webinar && (
+            <li><strong>Info Webinar:</strong> {apply.info_webinar}</li>
+          )}
+          {apply.registration_deadline && (
+            <li><strong>Registration:</strong> {apply.registration_deadline}</li>
+          )}
+          {hf?.tas_number && (
+            <li>Registration is only possible via your AMS advisor (TAS number <strong>{hf.tas_number}</strong>) — we unfortunately cannot register you directly</li>
+          )}
+          {apply.mandatory_webinar && (
+            <li>Participation in the info webinar is <strong>mandatory</strong> for the application process</li>
+          )}
+          {apply.mandatory_webinar && (
+            <li>You can't apply unless you participated in the info webinar</li>
+          )}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <Divider />
+
+  <section class="page-section">
+    <div class="inner">
+      <h2>What we offer</h2>
+      <div class="offer-grid">
+        <div class="offer-card">
+          <div class="offer-icon" aria-hidden="true">🧠</div>
+          <h3>A memorable learning experience</h3>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon" aria-hidden="true">📚</div>
+          <h3>A comprehensive and relevant curriculum</h3>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon" aria-hidden="true">👥</div>
+          <h3>An alumni community and regular events</h3>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon" aria-hidden="true">🎤</div>
+          <h3>Workshops and talks with industry professionals and mentors</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="page-section">
+    <div class="inner">
+      <h2>Eligibility criteria</h2>
+      <div class="eligibility-grid">
+        <div>
+          <h3 class="sub-h">Formal Criteria</h3>
+          <ul class="elig-list">
+            <li>Need to be registered as "unemployed" at AMS Wien</li>
+            <li>Have a valid working permit in Austria</li>
+            <li>Be at least 18 years of age by the start of the programme</li>
+            <li>English language skills at least on level B2 or equivalent</li>
+            <li>German language skills are not required but advantageous for future employment</li>
+            <li>Participated in the mandatory info-webinar</li>
+            <li>Be available for 32h/week for the duration of the programme</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub-h">What else we expect from you</h3>
+          <ul class="elig-list">
+            <li>Willingness to participate in a full-time programme</li>
+            <li>Highly (self-) motivated to learn programming</li>
+            <li>Be ready to start working as a (Junior) Software Developer right after the programme</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="page-section">
+    <div class="inner">
+      <h2>Our location</h2>
+      <a href={mapsUrl} target="_blank" rel="noopener" class="map-card" aria-label="Open Muthgasse 58, 1190 Vienna in Google Maps (opens in new tab)">
+        <div class="map-icon" aria-hidden="true">📍</div>
+        <div class="map-text">
+          <div class="map-address">
+            {hf?.location ?? 'Muthgasse 58, 1190 Vienna'}
+          </div>
+          <div class="map-cta">Open in Maps →</div>
+        </div>
+      </a>
+      <p class="map-note">
+        Near U4 Heiligenstadt. Click the card above to open the location in Google Maps
+        (external link — opens in a new tab, no tracking on this page).
+      </p>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="page-section">
+    <div class="inner">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              {item.q}
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="page-section contact-section" id="contact">
+    <div class="inner">
+      <h2>Contact us</h2>
+      <p>Send us an email with your questions and we'll get back to you.</p>
+      <a href={contactMailto} class="btn-primary">Send email</a>
+      <p class="contact-direct">
+        Or directly: <a href="mailto:office@everyonecodes.io">office@everyonecodes.io</a>
+      </p>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .page-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 100px 24px 60px;
+  }
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .eyebrow {
+    display: inline-block;
+    background: var(--lime);
+    color: var(--bg);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .page-hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+  .page-hero .lede {
+    font-size: 18px;
+    color: var(--text);
+    max-width: 640px;
+    margin: 0 auto 36px;
+    line-height: 1.75;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 34px;
+    background: linear-gradient(90deg, var(--magenta) 0%, var(--violet) 100%);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    border-radius: 999px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus-visible {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  .page-section {
+    padding: 72px 24px;
+  }
+  .inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .page-section h2 {
+    font-size: clamp(26px, 3.5vw, 40px);
+    margin-bottom: 28px;
+    color: var(--white);
+  }
+  .sub-h {
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 18px;
+  }
+
+  .java-box {
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid rgba(149, 84, 255, 0.25);
+    padding: 28px;
+    margin-top: 32px;
+  }
+  .java-box h3 {
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .java-box ul {
+    list-style: disc;
+    padding-left: 22px;
+  }
+  .java-box li {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .expect-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .expect-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .expect-list li::before {
+    content: '▸';
+    color: var(--magenta);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .hard-facts {
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid rgba(149, 84, 255, 0.25);
+    padding: 28px;
+  }
+  .hard-facts h3 {
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .hard-facts dl {
+    margin: 0;
+  }
+  .fact-row {
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .fact-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .fact-row dt {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .fact-row dd {
+    font-size: 13px;
+    color: var(--white);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .fact-row dd.lime {
+    color: var(--lime);
+    font-weight: 600;
+  }
+
+  .apply-section {
+    padding-top: 0;
+  }
+  .apply-box {
+    background: var(--card);
+    border: 1px solid rgba(149, 84, 255, 0.3);
+    border-radius: 10px;
+    padding: 36px 40px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .apply-box h2 {
+    font-size: clamp(20px, 2.5vw, 28px);
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .apply-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .apply-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .apply-list li::before {
+    content: '▸';
+    color: var(--magenta);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .apply-list li strong {
+    color: var(--white);
+  }
+
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 12px;
+  }
+  .offer-card {
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 28px 22px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .offer-card:hover {
+    border-color: var(--violet);
+    transform: translateY(-4px);
+  }
+  .offer-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .offer-card h3 {
+    font-size: 14px;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  .eligibility-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .elig-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .elig-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .elig-list li::before {
+    content: '▸';
+    color: var(--violet);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* DSGVO-konformer Map-Replacement (research-phase3 R4/F7): static card,
+   * no iframe, no third-party tracker on page-load. Click opens external. */
+  .map-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 28px 32px;
+    background: var(--card);
+    border: 1px solid rgba(149, 84, 255, 0.3);
+    border-radius: 12px;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .map-card:hover,
+  .map-card:focus-visible {
+    border-color: var(--violet);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(149, 84, 255, 0.18);
+  }
+  .map-icon {
+    font-size: 40px;
+    flex-shrink: 0;
+  }
+  .map-address {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .map-cta {
+    color: var(--violet);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .map-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 24px;
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .faq-item:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 4px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--white);
+    transition: color 0.2s;
+    gap: 16px;
+    list-style: none;
+  }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+  .faq-question:hover {
+    color: var(--violet);
+  }
+  .faq-icon {
+    flex-shrink: 0;
+    font-size: 20px;
+    color: var(--violet);
+    transition: transform 0.3s;
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    padding: 0 4px 20px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .contact-section {
+    text-align: center;
+  }
+  .contact-section p {
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+  .contact-direct {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .contact-direct a {
+    color: var(--violet);
+  }
+
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .offer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .eligibility-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+  @media (max-width: 540px) {
+    .offer-grid {
+      grid-template-columns: 1fr;
+    }
+    .map-card {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

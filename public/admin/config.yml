@@ -57,7 +57,7 @@ collections:
       - { label: Slug (URL segment), name: slug, widget: string }
       - { label: Duration, name: duration, widget: string }
       - { label: AMS Funded, name: ams_funded, widget: boolean, default: false }
-      - { label: Start Date, name: start_date, widget: string, required: false }
+      - { label: Start Date (short, for card), name: start_date, widget: string, required: false }
       - label: Intake Status
         name: intake_status
         widget: select
@@ -65,6 +65,32 @@ collections:
         default: upcoming
       - { label: Short Description, name: short_description, widget: text }
       - { label: Order, name: order, widget: number, default: 99, value_type: int }
+      - label: Hard Facts (detail page)
+        name: hard_facts
+        widget: object
+        required: false
+        fields:
+          - { label: Start date, name: start, widget: string, required: false }
+          - { label: End date, name: end, widget: string, required: false }
+          - label: Schedule
+            name: schedule
+            widget: list
+            field: { label: Schedule line, name: line, widget: string }
+            required: false
+          - { label: Hours per week, name: hours_per_week, widget: string, required: false }
+          - { label: Format, name: format, widget: string, required: false }
+          - { label: Self-study hours, name: self_study_hours, widget: string, required: false }
+          - { label: Language, name: language, widget: string, required: false }
+          - { label: Location, name: location, widget: string, required: false }
+          - { label: TAS Number, name: tas_number, widget: string, required: false }
+      - label: Apply Info (detail page)
+        name: apply_info
+        widget: object
+        required: false
+        fields:
+          - { label: Info webinar (date/time), name: info_webinar, widget: string, required: false }
+          - { label: Registration deadline, name: registration_deadline, widget: string, required: false }
+          - { label: Webinar mandatory, name: mandatory_webinar, widget: boolean, default: true }
 
   - name: awards
     label: Awards & Prizes
