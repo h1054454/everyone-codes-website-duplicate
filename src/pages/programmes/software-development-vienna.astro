@@ -6,6 +6,11 @@ import Divider from '~/components/Divider.astro';
 import amsWienLogo from '~/assets/associates/ams-wien.png';
 import jugendAmWerkLogo from '~/assets/associates/jugend-am-werk.png';
 import dodecaIcon from '~/assets/brand/icon-dodecahedron.png';
+import offerLearning from '~/assets/offer/learning-experience.webp';
+import offerResources from '~/assets/offer/online-resources.webp';
+import offerCommunity from '~/assets/offer/alumni-community.webp';
+import offerWorkshops from '~/assets/offer/workshops.webp';
+import offerCertificate from '~/assets/offer/certificate.webp';
 
 const programme = await getEntry('programmes', 'software-development-vienna');
 if (!programme) throw new Error('Programme software-development-vienna not found');
@@ -225,23 +230,23 @@ const mapsUrl = 'https://www.google.com/maps/place/Muthgasse+58,+1190+Wien';
       <h2>What we offer</h2>
       <div class="offer-grid">
         <div class="offer-card">
-          <div class="offer-icon" aria-hidden="true">🧠</div>
+          <Image src={offerLearning} alt="" class="offer-icon" width={110} height={110} />
           <h3>A memorable learning experience</h3>
         </div>
         <div class="offer-card">
-          <div class="offer-icon" aria-hidden="true">📚</div>
+          <Image src={offerResources} alt="" class="offer-icon" width={110} height={110} />
           <h3>A comprehensive pool of online resources</h3>
         </div>
         <div class="offer-card">
-          <div class="offer-icon" aria-hidden="true">👥</div>
+          <Image src={offerCommunity} alt="" class="offer-icon" width={110} height={110} />
           <h3>An alumni programme, intercultural community and regular events</h3>
         </div>
         <div class="offer-card">
-          <div class="offer-icon" aria-hidden="true">🎤</div>
+          <Image src={offerWorkshops} alt="" class="offer-icon" width={110} height={110} />
           <h3>Workshops and guidance by seasoned programmers and professionals</h3>
         </div>
         <div class="offer-card">
-          <div class="offer-icon" aria-hidden="true">🎓</div>
+          <Image src={offerCertificate} alt="" class="offer-icon" width={110} height={110} />
           <h3>A certificate as evidence of your hard work, upon successful completion of the programme</h3>
         </div>
       </div>
@@ -624,8 +629,10 @@ const mapsUrl = 'https://www.google.com/maps/place/Muthgasse+58,+1190+Wien';
     transform: translateY(-4px);
   }
   .offer-icon {
-    font-size: 32px;
-    margin-bottom: 16px;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 16px;
+    display: block;
   }
   .offer-card h3 {
     font-size: 13.5px;
