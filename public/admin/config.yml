@@ -1,0 +1,106 @@
+# Sveltia CMS configuration — everyone codes
+# Mirrors src/content/config.ts schemas. Keep these two files in sync.
+# See docs/cms-editor-guide.md for editor workflow.
+
+backend:
+  name: github
+  repo: h1054454/everyone-codes-website-duplicate
+  branch: main
+  # Sprint B: deploy https://github.com/sveltia/sveltia-cms-auth as a
+  # Cloudflare Worker and point this at it. Until then the login is disabled.
+  base_url: https://auth.everyonecodes.io
+  auth_endpoint: auth
+
+# Sprint A: GitHub Pages → /everyone-codes-website-duplicate
+# Sprint B: cutover to https://everyonecodes.io (drop the base prefix below)
+site_url: https://h1054454.github.io/everyone-codes-website-duplicate
+display_url: https://h1054454.github.io/everyone-codes-website-duplicate
+publish_mode: simple
+
+collections:
+  - name: team
+    label: Team Members
+    folder: src/content/team
+    create: true
+    slug: '{{slug}}'
+    media_folder: photos
+    public_folder: photos
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Role, name: role, widget: string }
+      - { label: Photo, name: photo, widget: image }
+      - { label: Order, name: order, widget: number, default: 99, value_type: int }
+      - { label: Active, name: active, widget: boolean, default: true }
+      - { label: Note (optional), name: note, widget: string, required: false }
+
+  - name: testimonials
+    label: Testimonials
+    folder: src/content/testimonials
+    create: true
+    slug: '{{slug}}'
+    media_folder: photos
+    public_folder: photos
+    fields:
+      - { label: Author, name: author, widget: string }
+      - { label: Role / Position, name: role, widget: string }
+      - { label: Quote, name: quote, widget: text }
+      - { label: Avatar, name: avatar, widget: image, required: false }
+      - { label: Order, name: order, widget: number, default: 99, value_type: int }
+
+  - name: programmes
+    label: Programmes
+    folder: src/content/programmes
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug (URL segment), name: slug, widget: string }
+      - { label: Duration, name: duration, widget: string }
+      - { label: AMS Funded, name: ams_funded, widget: boolean, default: false }
+      - { label: Start Date, name: start_date, widget: string, required: false }
+      - label: Intake Status
+        name: intake_status
+        widget: select
+        options: [open, closed, upcoming]
+        default: upcoming
+      - { label: Short Description, name: short_description, widget: text }
+      - { label: Order, name: order, widget: number, default: 99, value_type: int }
+
+  - name: awards
+    label: Awards & Prizes
+    folder: src/content/awards
+    create: true
+    slug: '{{slug}}'
+    media_folder: photos
+    public_folder: photos
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Logo, name: logo, widget: image }
+      - { label: URL, name: url, widget: string }
+      - { label: Year, name: year, widget: number, required: false, value_type: int }
+      - { label: Order, name: order, widget: number, default: 99, value_type: int }
+
+  - name: partner-slides
+    label: Alumni Employer Logo Slides
+    folder: src/content/partner-slides
+    create: true
+    slug: '{{slug}}'
+    media_folder: photos
+    public_folder: photos
+    fields:
+      - { label: Image (composite logo strip), name: image, widget: image }
+      - { label: Alt text, name: alt, widget: string, default: 'Alumni employer logos' }
+      - { label: Order, name: order, widget: number, default: 99, value_type: int }
+
+  - name: jobs
+    label: Open Job Positions
+    folder: src/content/jobs
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Start Date, name: start_date, widget: string }
+      - { label: Link (job ad URL), name: link, widget: string }
+      - { label: Active (visible on site), name: active, widget: boolean, default: true }
+      - { label: Order, name: order, widget: number, default: 99, value_type: int }

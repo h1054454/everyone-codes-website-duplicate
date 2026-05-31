@@ -1,38 +1,30 @@
 ---
+import { getCollection } from 'astro:content';
 import TestimonialCard from './TestimonialCard.astro';
-import birgitAvatar from '~/assets/testimonials/birgit.jpeg';
-import mohammadAvatar from '~/assets/testimonials/mohammad.jpeg';
-import nisreenAvatar from '~/assets/testimonials/nisreen.jpeg';
 
 interface Props {
   id?: string;
 }
 
 const { id = 'testimonials' } = Astro.props;
+
+const testimonials = (await getCollection('testimonials')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <section {id}>
   <div class="container">
     <h2 class="section-title">What our alumni say</h2>
     <div class="testimonials-grid">
-      <TestimonialCard
-        quote="As I had to stop my personal training business due to the pandemic, I decided to start a new career in software development. Thanks to my supportive mentors and the community, I did not only learn a programming language well but also how to think like a programmer. I found a job right after the programme. It was challenging but definitely worth it!"
-        author="Birgit Langer"
-        role="Software Developer @ ENIO"
-        avatar={birgitAvatar}
-      />
-      <TestimonialCard
-        quote="Being a participant in this programme was a turning point in my life. I had previously studied sociology and started the programme with literally no coding skills. Today I work as a software developer on a digital transformation project in the insurance sector. I'm glad I decided to partake in this programme. Do not hesitate and apply!"
-        author="Mohammad Sawas"
-        role="Software Developer @ Timeless Soft"
-        avatar={mohammadAvatar}
-      />
-      <TestimonialCard
-        quote="The intensity of the programme was really high. I was a bit sceptical at the beginning but it turned out to be great! I learned so much about technology and programming concepts. I also sharpened my soft skills such as communication and teamwork. The team really puts a lot of effort into supporting you, both during and after the programme. I can only recommend it!"
-        author="Nisreen Alam Aldeen"
-        role="Internal Apps & Frameworks Developer @ ISIS Papyrus Software"
-        avatar={nisreenAvatar}
-      />
+      {testimonials.map((t) => (
+        <TestimonialCard
+          quote={t.data.quote}
+          author={t.data.author}
+          role={t.data.role}
+          avatar={t.data.avatar}
+        />
+      ))}
     </div>
   </div>
 </section>

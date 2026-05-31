@@ -5,7 +5,7 @@ interface Props {
   quote: string;
   author: string;
   role: string;
-  avatar: ImageMetadata;
+  avatar?: ImageMetadata;
 }
 
 const { quote, author, role, avatar } = Astro.props;
@@ -16,7 +16,9 @@ const { quote, author, role, avatar } = Astro.props;
     {quote}
   </blockquote>
   <div class="t-author">
-    <img src={avatar.src} alt={`${author}`} class="t-avatar-img" width="52" height="52" loading="lazy" />
+    {avatar && (
+      <img src={avatar.src} alt={author} class="t-avatar-img" width="52" height="52" loading="lazy" />
+    )}
     <div class="t-info">
       <h4>{author}</h4>
       <span>{role}</span>

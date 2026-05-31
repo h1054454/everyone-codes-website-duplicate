@@ -1,9 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
+
 interface Props {
   id?: string;
 }
 
 const { id = 'career' } = Astro.props;
+
+const jobs = (await getCollection('jobs', (j) => j.data.active)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <section {id}>
@@ -15,37 +21,15 @@ const { id = 'career' } = Astro.props;
     </p>
 
     <div class="career-cards">
-      <article class="job-card">
-        <h3>Software Developer who enjoys teaching</h3>
-        <div class="job-card-divider"></div>
-        <p>
-          Join everyone codes as a mentor, helping people and changing lives through teaching!
-        </p>
-        <p class="job-start">Start immediately</p>
-        <a
-          href="https://drive.google.com/drive/folders/1XQyVuJoCCHfwYRWWcGRG3LFvN5MXjFlA"
-          target="_blank"
-          rel="noopener"
-          class="btn-job"
-        >View →</a>
-      </article>
-
-      <article class="job-card">
-        <h3>Civilian Servant</h3>
-        <div class="job-card-divider"></div>
-        <p>Join everyone codes for a hands-on civilian service!</p>
-        <p>
-          Dive into tasks like course support, website updates, and tech setup while gaining
-          real experience in a fun, collaborative team.
-        </p>
-        <p class="job-start">Start July or October 2027</p>
-        <a
-          href="https://drive.google.com/file/d/1qecf9BqbyaQRCZ4RWWK8OCMoNB1Qh3bl/view"
-          target="_blank"
-          rel="noopener"
-          class="btn-job"
-        >View →</a>
-      </article>
+      {jobs.map((job) => (
+        <article class="job-card">
+          <h3>{job.data.title}</h3>
+          <div class="job-card-divider"></div>
+          <p>{job.data.description}</p>
+          <p class="job-start">{job.data.start_date}</p>
+          <a href={job.data.link} target="_blank" rel="noopener" class="btn-job">View →</a>
+        </article>
+      ))}
     </div>
   </div>
 </section>

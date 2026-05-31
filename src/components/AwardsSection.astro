@@ -1,25 +1,25 @@
 ---
+import { getCollection } from 'astro:content';
 import AwardBadge from './AwardBadge.astro';
-import socialImpact from '~/assets/awards/social-impact.png';
-import hr2017 from '~/assets/awards/hr-2017.png';
-import ideasEurope from '~/assets/awards/ideas-europe.png';
-import cocaCola from '~/assets/awards/coca-cola.png';
 
 interface Props {
   id?: string;
 }
 
 const { id = 'awards' } = Astro.props;
+
+const awards = (await getCollection('awards')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <section {id}>
   <div class="container">
     <h2 class="section-title">Prizes &amp; Awards</h2>
     <div class="awards-row">
-      <AwardBadge name="Social Impact Award" logo={socialImpact} url="https://socialimpactaward.net" />
-      <AwardBadge name="HR Award 2017" logo={hr2017} url="https://leadersnet.at" />
-      <AwardBadge name="Ideas from Europe" logo={ideasEurope} url="https://medium.com" />
-      <AwardBadge name="Coca-Cola Get Active Social Business Award" logo={cocaCola} url="https://coca-cola-oesterreich.at" />
+      {awards.map((a) => (
+        <AwardBadge name={a.data.name} logo={a.data.logo} url={a.data.url} />
+      ))}
     </div>
   </div>
 </section>

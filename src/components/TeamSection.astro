@@ -1,10 +1,6 @@
 ---
+import { getCollection } from 'astro:content';
 import TeamCard from './TeamCard.astro';
-import edinaPhoto from '~/assets/team/edina.png';
-import alexPhoto from '~/assets/team/alex.png';
-import stefanPhoto from '~/assets/team/stefan.png';
-import angelinaPhoto from '~/assets/team/angelina.png';
-import yasinPhoto from '~/assets/team/yasin.png';
 
 interface Props {
   id?: string;
@@ -12,21 +8,17 @@ interface Props {
 
 const { id = 'team' } = Astro.props;
 
-const team = [
-  { name: 'Edina Hadziahmetovic', role: 'Managing Director', photo: edinaPhoto },
-  { name: 'Alexander von Franqué', role: 'CTO & Mentor', photo: alexPhoto },
-  { name: 'Stefan Steinberger', role: 'Founder', photo: stefanPhoto },
-  { name: 'Angelina Djordjevic', role: 'Project Manager (on parental leave)', photo: angelinaPhoto },
-  { name: 'Yasin Sahin', role: 'Assistant', photo: yasinPhoto },
-];
+const members = (await getCollection('team', (m) => m.data.active)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <section {id}>
   <div class="container">
     <h2 class="section-title">Our Team</h2>
     <div class="team-grid">
-      {team.map((member) => (
-        <TeamCard name={member.name} role={member.role} photo={member.photo} />
+      {members.map((m) => (
+        <TeamCard name={m.data.name} role={m.data.role} photo={m.data.photo} />
       ))}
     </div>
   </div>
