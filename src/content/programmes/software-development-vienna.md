@@ -5,13 +5,13 @@ title: |
 slug: software-development-vienna
 duration: 10 months
 ams_funded: true
-start_date: Starting Ende 2026 — Datum folgt
+start_date: to be announced
 intake_status: upcoming
 short_description: "This 10-month programme in Vienna will teach you everything you'll need to know to start your career as a Junior Software Developer, from the basics of Java to back-end development with the Spring framework."
 order: 1
 hard_facts:
-  start: 01 December 2025 (Monday)
-  end: 02 October 2026 (Friday)
+  start: to be announced
+  end: to be announced
   schedule:
     - "Mon, Tue, Fri: 9:00 am – 4:00 pm"
     - "Wed & Thu: 9:00 am – 5:00 pm"

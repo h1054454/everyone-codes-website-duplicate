@@ -5,6 +5,7 @@ import PageLayout from '~/layouts/PageLayout.astro';
 import Divider from '~/components/Divider.astro';
 import amsWienLogo from '~/assets/associates/ams-wien.png';
 import jugendAmWerkLogo from '~/assets/associates/jugend-am-werk.png';
+import dodecaIcon from '~/assets/brand/icon-dodecahedron.png';
 
 const programme = await getEntry('programmes', 'software-development-vienna');
 if (!programme) throw new Error('Programme software-development-vienna not found');
@@ -114,7 +115,7 @@ const mapsUrl = 'https://www.google.com/maps/place/Muthgasse+58,+1190+Wien';
       <div class="about-grid">
         <div>
           <h3 class="sub-h">What to expect</h3>
-          <ul class="expect-list">
+          <ul class="expect-list" style={`--bullet-icon: url(${dodecaIcon.src})`}>
             <li>Learn and truly understand the <strong>Fundamentals of Programming</strong>, important for any language. In addition, you will dive deeper into the specifics of the programming language <strong>Java</strong></li>
             <li>Extending basic knowledge of Java with focus on <strong>back-end specialization</strong></li>
             <li>Learn and truly understand Java frameworks: <strong>Spring Boot</strong> – Web; <strong>Spring Data</strong> – NoSQL, JPA with MySQL; <strong>Spring Security</strong></li>
@@ -490,25 +491,34 @@ const mapsUrl = 'https://www.google.com/maps/place/Muthgasse+58,+1190+Wien';
     gap: 48px;
     align-items: start;
   }
+  /* Custom bullet: small dodecahedron logo aligned to the left of each
+   * list item. List is fully left-aligned (no list-padding). */
   .expect-list {
     list-style: none;
+    padding-left: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
   .expect-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+    position: relative;
+    padding-left: 36px;
     font-size: 14px;
     color: var(--text);
-    line-height: 1.7;
+    line-height: 1.75;
   }
   .expect-list li::before {
-    content: '▸';
-    color: var(--magenta);
-    flex-shrink: 0;
-    margin-top: 2px;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 22px;
+    height: 22px;
+    background-image: var(--bullet-icon);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .hard-facts {
