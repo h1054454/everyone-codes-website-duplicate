@@ -34,16 +34,17 @@ html {
 }
 
 /* ─── BODY ────────────────────────────────────────────────── */
-/* Body-Background: bg-main.jpeg = Sterne + großes Dodecahedron-Element
- * (zusammengesetzte Komposition, 1:1 wie Live-Seite everyonecodes.io).
- * cover + fixed + center = parallax-artige Wirkung beim Scrollen. */
+/* Body-Background: bg-stars.png ist die zusammengesetzte Komposition
+ * (Sterne + großes Dodecahedron + Planeten rechts, 1920x1080),
+ * identisch zur Live-Seite (dodeca-stars-bg-2.png im pagecloud-CDN).
+ * cover + right-center hält das Dodecahedron rechts im Viewport sichtbar. */
 body {
   font-family: var(--font-body);
   background-color: var(--bg);
-  background-image: url('../assets/brand/bg-main.jpeg');
+  background-image: url('../assets/brand/bg-stars.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: right top;
   background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
