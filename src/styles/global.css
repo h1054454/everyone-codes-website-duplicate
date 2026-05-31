@@ -49,7 +49,7 @@ body {
   background-image: url('../assets/brand/dodeca-wireframe.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center top;
+  background-position: right top;
   background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;

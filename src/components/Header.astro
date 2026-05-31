@@ -37,6 +37,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </li>
     </ul>
 
+    <a href={`${base}/#career`} class="cta-hiring">We're hiring!</a>
+
     <button
       type="button"
       class="hamburger"
@@ -202,6 +204,29 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     color: var(--violet);
   }
 
+  /* "We're hiring!" CTA pill — magenta→violet gradient, replaces the old
+   * full-width Banner. Matches live site's header layout. */
+  .cta-hiring {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    background: linear-gradient(90deg, var(--magenta) 0%, var(--violet) 100%);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
+    margin-left: 18px;
+  }
+  .cta-hiring:hover,
+  .cta-hiring:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255, 77, 235, 0.35);
+    opacity: 0.95;
+  }
+
   .hamburger {
     display: none;
     flex-direction: column;
@@ -236,5 +261,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   @media (max-width: 860px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
+    /* Keep CTA visible on mobile, but smaller */
+    .cta-hiring {
+      padding: 8px 16px;
+      font-size: 12px;
+      margin-left: 0;
+      margin-right: 8px;
+    }
+  }
+  @media (max-width: 480px) {
+    .cta-hiring { display: none; }
   }
 </style>
