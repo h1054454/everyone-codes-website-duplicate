@@ -1,34 +1,72 @@
 ---
+import { t, toLang } from '~/i18n/ui';
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const lang = toLang(Astro.currentLocale);
 ---
 
 <div id="mobile-nav" class="mobile-nav" aria-hidden="true" role="dialog" aria-label="Main menu">
   <button type="button" class="close-btn" aria-label="Close menu" id="mobile-nav-close">✕</button>
-  <a href={`${base}/#mission`}>Mission</a>
-  <a href={`${base}/#programmes`}>Programmes</a>
-  <a href={`${base}/#testimonials`}>Testimonials</a>
-  <a href={`${base}/#awards`}>Prizes &amp; Awards</a>
-  <a href={`${base}/#team`}>Team</a>
-  <a href={`${base}/#contact`}>Contact</a>
-  <a href={`${base}/#career`}>Career</a>
+  <a href={`${base}/#mission`}>{t(lang, 'nav.mission')}</a>
+  <a href={`${base}/#programmes`}>{t(lang, 'footer.programmes')}</a>
+  <a href={`${base}/#testimonials`}>{t(lang, 'nav.testimonials')}</a>
+  <a href={`${base}/#awards`}>{t(lang, 'nav.awards')}</a>
+  <a href={`${base}/#team`}>{t(lang, 'nav.team')}</a>
+  <a href={`${base}/#contact`}>{t(lang, 'nav.contact')}</a>
+  <a href={`${base}/#career`}>{t(lang, 'nav.career')}</a>
 </div>
 
 <script>
   const overlay = document.getElementById('mobile-nav');
   const closeBtn = document.getElementById('mobile-nav-close');
 
+  function getFocusable(): HTMLElement[] {
+    if (!overlay) return [];
+    return Array.from(overlay.querySelectorAll('a[href], button:not([disabled])'));
+  }
+
   function closeNav() {
     if (!overlay) return;
     overlay.classList.remove('open');
     overlay.setAttribute('aria-hidden', 'true');
-    document.getElementById('hamburger-btn')?.setAttribute('aria-expanded', 'false');
+    const hamburger = document.getElementById('hamburger-btn');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    hamburger?.focus();
   }
 
   closeBtn?.addEventListener('click', closeNav);
   overlay?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeNav));
 
+  // Move focus into the overlay when it opens (Header toggles the .open class).
+  const openObserver = new MutationObserver(() => {
+    if (overlay?.classList.contains('open')) getFocusable()[0]?.focus();
+  });
+  if (overlay) {
+    openObserver.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+  }
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay?.classList.contains('open')) closeNav();
+    if (!overlay?.classList.contains('open')) return;
+
+    if (e.key === 'Escape') {
+      closeNav();
+      return;
+    }
+
+    // Focus trap: keep Tab cycling inside the open dialog.
+    if (e.key === 'Tab') {
+      const focusable = getFocusable();
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 </script>
 

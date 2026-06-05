@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 
 interface Props {
   quote: string;
@@ -17,7 +18,7 @@ const { quote, author, role, avatar } = Astro.props;
   </blockquote>
   <div class="t-author">
     {avatar && (
-      <img src={avatar.src} alt={author} class="t-avatar-img" width="52" height="52" loading="lazy" />
+      <Image src={avatar} alt={author} class="t-avatar-img" width={104} loading="lazy" />
     )}
     <div class="t-info">
       <h4>{author}</h4>

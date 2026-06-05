@@ -1,11 +1,15 @@
 ---
 import '~/styles/global.css';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import { toLogicalPath, translatedPaths } from '~/i18n/ui';
+import josefinWoff2 from '@fontsource-variable/josefin-sans/files/josefin-sans-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
   description?: string;
   lang?: 'en' | 'de';
   ogImage?: string;
+  jsonLd?: object;
 }
 
 const {
@@ -13,10 +17,17 @@ const {
   description = 'everyone codes — high-quality coding education for everyone.',
   lang = 'en',
   ogImage,
+  jsonLd,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImageUrl = ogImage ?? new URL(`${import.meta.env.BASE_URL}/og-default.png`, Astro.site).toString();
+
+// hreflang alternates — only emitted for pages that actually have a translated
+// twin (see translatedPaths), so we never advertise a non-existent /de page.
+const logicalPath = toLogicalPath(Astro.url.pathname, lang);
+const hasTwin = translatedPaths.has(logicalPath);
+const localeRelPath = logicalPath.replace(/^\//, '');
 ---
 
 <!doctype html>
@@ -26,11 +37,24 @@ const ogImageUrl = ogImage ?? new URL(`${import.meta.env.BASE_URL}/og-default.pn
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
+    <link rel="preload" href={josefinWoff2} as="font" type="font/woff2" crossorigin />
+
     <title>{title}</title>
     <meta name="description" content={description} />
 
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/favicon.png`} />
+    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}/apple-touch-icon.png`} />
+
+    {
+      hasTwin && (
+        <>
+          <link rel="alternate" hreflang="en" href={getAbsoluteLocaleUrl('en', localeRelPath)} />
+          <link rel="alternate" hreflang="de" href={getAbsoluteLocaleUrl('de', localeRelPath)} />
+          <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl('en', localeRelPath)} />
+        </>
+      )
+    }
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -45,6 +69,8 @@ const ogImageUrl = ogImage ?? new URL(`${import.meta.env.BASE_URL}/og-default.pn
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+
+    {jsonLd && <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />}
 
     <slot name="head" />
   </head>

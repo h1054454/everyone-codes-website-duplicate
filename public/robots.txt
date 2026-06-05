@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Sitemap URL is the production domain (honoured after the Phase 6 cutover;
+# robots.txt at the Sprint-A GitHub Pages sub-path is not crawler-authoritative).
+Sitemap: https://everyonecodes.io/sitemap-index.xml

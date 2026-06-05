@@ -1,8 +1,10 @@
 ---
 import logo from '~/assets/brand/logo.png';
+import { t, toLang } from '~/i18n/ui';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const year = new Date().getFullYear();
+const lang = toLang(Astro.currentLocale);
 ---
 
 <footer>
@@ -12,14 +14,14 @@ const year = new Date().getFullYear();
     </div>
 
     <nav class="footer-links" aria-label="Footer">
-      <a href={`${base}/#mission`}>Mission</a>
-      <a href={`${base}/programmes/software-development-vienna`}>Programmes</a>
-      <a href={`${base}/#team`}>Team</a>
-      <a href={`${base}/#contact`}>Contact</a>
-      <a href={`${base}/#career`}>Career</a>
-      <a href={`${base}/imprint`}>Imprint</a>
-      <a href={`${base}/privacy`}>Privacy</a>
-      <a href={`${base}/donate`}>Donate</a>
+      <a href={`${base}/#mission`}>{t(lang, 'nav.mission')}</a>
+      <a href={`${base}/programmes/software-development-vienna`}>{t(lang, 'footer.programmes')}</a>
+      <a href={`${base}/#team`}>{t(lang, 'nav.team')}</a>
+      <a href={`${base}/#contact`}>{t(lang, 'nav.contact')}</a>
+      <a href={`${base}/#career`}>{t(lang, 'nav.career')}</a>
+      <a href={`${base}/imprint`}>{t(lang, 'footer.imprint')}</a>
+      <a href={`${base}/privacy`}>{t(lang, 'footer.privacy')}</a>
+      <a href={`${base}/donate`}>{t(lang, 'footer.donate')}</a>
     </nav>
 
     <div class="footer-social">

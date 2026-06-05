@@ -1,52 +1,69 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 
-// Sprint A content from legal-from-squarespace.md. Phase 5 will:
-// - Add Spendenbegünstigung (SP3-Bescheid Sep 2025) + BMF-Link
-// - Add Aufsichtsbehörde (Magistratisches Bezirksamt Wien)
-// - Add Unternehmensgegenstand ("gemeinnützige Bildungsarbeit")
-// - Review with Ecovis
+// Impressum nach §25 MedienG — auf Deutsch (Entscheidung 2026-06-05), auch
+// wenn die übrige Site EN-only ist. Vor dem Cutover (Phase 6) durch Ecovis
+// prüfen lassen (insb. Aufsichtsbehörde-Bezeichnung).
 ---
 
 <PageLayout
-  title="Imprint – everyone codes"
-  description="Imprint / Impressum of everyone codes gGmbH, a non-profit education NGO based in Vienna, Austria."
+  lang="de"
+  title="Impressum – everyone codes"
+  description="Impressum der everyone codes gGmbH gemäß §25 Mediengesetz — gemeinnützige Bildungs-NGO mit Sitz in Wien."
 >
   <section class="legal-page">
     <div class="container">
-      <h1>Imprint</h1>
+      <h1>Impressum</h1>
 
-      <h2>Company Information</h2>
+      <p class="lede">
+        Angaben gemäß §25 Mediengesetz und §14 Unternehmensgesetzbuch.
+      </p>
+
+      <h2>Medieninhaber und Herausgeber</h2>
       <dl class="info-block">
-        <dt>Name</dt>
+        <dt>Unternehmen</dt>
         <dd>everyone codes gGmbH</dd>
-        <dt>Address</dt>
+        <dt>Anschrift</dt>
         <dd>
           Muthgasse 58/60<br />
-          1190 Vienna<br />
-          Austria
+          1190 Wien<br />
+          Österreich
         </dd>
       </dl>
 
-      <h2>Contact</h2>
+      <h2>Kontakt</h2>
       <dl class="info-block">
         <dt>E-Mail</dt>
         <dd><a href="mailto:office@everyonecodes.io">office@everyonecodes.io</a></dd>
-        <dt>Phone</dt>
-        <dd><a href="tel:+436812050173">+43 681 205 017 39</a></dd>
+        <dt>Telefon</dt>
+        <dd><a href="tel:+4368120501739">+43 681 205 017 39</a></dd>
       </dl>
 
-      <h2>Registration Details</h2>
+      <h2>Registrierung</h2>
       <dl class="info-block">
-        <dt>Registry Number</dt>
+        <dt>Firmenbuchnummer</dt>
         <dd>FN 504101a</dd>
-        <dt>VAT Number</dt>
+        <dt>Umsatzsteuer-Identifikationsnummer</dt>
         <dd>ATU74031102</dd>
-        <dt>Chamber Membership</dt>
-        <dd>Member of the Austrian Chamber of Commerce (WKÖ)</dd>
+        <dt>Kammerzugehörigkeit</dt>
+        <dd>Mitglied der Wirtschaftskammer Österreich (WKÖ)</dd>
       </dl>
 
-      <h2>Banking Information</h2>
+      <h2>Geschäftsführung</h2>
+      <dl class="info-block">
+        <dt>Geschäftsführerin</dt>
+        <dd>Edina Hadziahmetovic</dd>
+      </dl>
+
+      <h2>Unternehmensgegenstand</h2>
+      <dl class="info-block">
+        <dt>Gegenstand</dt>
+        <dd>Gemeinnützige Bildungsarbeit (gemeinnützige GmbH)</dd>
+        <dt>Aufsichtsbehörde</dt>
+        <dd>Magistratisches Bezirksamt der Stadt Wien</dd>
+      </dl>
+
+      <h2>Bankverbindung</h2>
       <dl class="info-block">
         <dt>Bank</dt>
         <dd>Erste Bank Oesterreich</dd>
@@ -56,22 +73,25 @@ import PageLayout from '~/layouts/PageLayout.astro';
         <dd><code>AT88 2011 1840 1922 1900</code></dd>
       </dl>
 
-      <h2>Management</h2>
-      <dl class="info-block">
-        <dt>Managing Director</dt>
-        <dd>Edina Hadziahmetovic</dd>
-      </dl>
+      <h2>Spendenbegünstigung</h2>
+      <p>
+        Die everyone codes gGmbH ist als begünstigte Spendenempfängerin anerkannt
+        (Bescheid des Finanzamts über die Spendenbegünstigung gemäß §4a EStG,
+        September 2025). Spenden sind steuerlich absetzbar. Die Eintragung ist in
+        der Liste der begünstigten Spendenempfänger des Bundesministeriums für
+        Finanzen einsehbar:
+      </p>
+      <p>
+        <a
+          href="https://service.bmf.gv.at/service/allg/spenden/show_mast.asp"
+          target="_blank"
+          rel="noopener"
+        >
+          Liste der begünstigten Spendenempfänger (BMF)
+        </a>
+      </p>
 
-      <!--
-        TODO Phase 5 — legal review with Ecovis:
-        - Add Spendenbegünstigung (SP3-Bescheid Sep 2025) + link to
-          https://service.bmf.gv.at/service/allg/spenden/show_mast.asp
-        - Add Aufsichtsbehörde: Magistratisches Bezirksamt Wien
-        - Add Unternehmensgegenstand: "gemeinnützige Bildungsarbeit (gGmbH)"
-        - Add Verbraucherstreitbeilegung-Link if applicable
-      -->
-
-      <p class="last-updated">Last updated: 2026-05-31</p>
+      <p class="last-updated">Stand: 5. Juni 2026</p>
     </div>
   </section>
 </PageLayout>
@@ -88,7 +108,13 @@ import PageLayout from '~/layouts/PageLayout.astro';
   h1 {
     font-size: clamp(32px, 4.5vw, 48px);
     color: var(--white);
-    margin-bottom: 40px;
+    margin-bottom: 24px;
+  }
+  .lede {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
   }
   h2 {
     font-size: clamp(20px, 2.5vw, 26px);
@@ -114,12 +140,20 @@ import PageLayout from '~/layouts/PageLayout.astro';
     color: var(--text);
     margin: 0;
   }
-  .info-block dd a {
+  .info-block dd a,
+  p a {
     color: var(--violet);
-  }
-  .info-block dd a:hover {
-    color: var(--magenta);
     text-decoration: underline;
+  }
+  .info-block dd a:hover,
+  p a:hover {
+    color: var(--magenta);
+  }
+  p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 10px;
   }
   code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;

@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 
 interface Props {
   name: string;
@@ -11,7 +12,7 @@ const { name, logo, url } = Astro.props;
 ---
 
 <a href={url} target="_blank" rel="noopener" class="award-badge" aria-label={name}>
-  <img src={logo.src} alt={name} loading="lazy" />
+  <Image src={logo} alt={name} class="award-img" loading="lazy" />
 </a>
 
 <style>
@@ -28,7 +29,7 @@ const { name, logo, url } = Astro.props;
   .award-badge:focus-visible {
     transform: translateY(-4px);
   }
-  .award-badge img {
+  .award-img {
     height: 120px;
     width: auto;
   }

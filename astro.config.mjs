@@ -16,10 +16,13 @@ export default defineConfig({
     inlineStylesheets: 'auto',
   },
 
-  // i18n is added in Phase 4
-  // i18n: {
-  //   defaultLocale: 'en',
-  //   locales: ['en', 'de'],
-  //   routing: { prefixDefaultLocale: false },
-  // },
+  // Phase 4: i18n scaffold. EN stays at the root (no /en prefix), DE lives
+  // under /de. Content is English everywhere for now — only the routing,
+  // label lookup and language switcher are wired up. The actual German
+  // translations are a later content sprint (see plan.md Phase 4 scope note).
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'de'],
+    routing: { prefixDefaultLocale: false },
+  },
 });

@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   lang?: 'en' | 'de';
   ogImage?: string;
+  jsonLd?: object;
 }
 
 const {
@@ -16,10 +17,11 @@ const {
   description,
   lang,
   ogImage,
+  jsonLd,
 } = Astro.props;
 ---
 
-<BaseLayout {title} {description} {lang} {ogImage}>
+<BaseLayout {title} {description} {lang} {ogImage} {jsonLd}>
   <Header />
   <MobileNav />
   <main id="main-content">

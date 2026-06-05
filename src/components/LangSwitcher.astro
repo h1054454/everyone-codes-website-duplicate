@@ -1,0 +1,54 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { toLang, toLogicalPath, translatedPaths } from '~/i18n/ui';
+
+const lang = toLang(Astro.currentLocale);
+const other: 'en' | 'de' = lang === 'en' ? 'de' : 'en';
+
+const logical = toLogicalPath(Astro.url.pathname, lang);
+// Only show the switch where a translated twin actually exists, so we never
+// link to a missing page. Grows as DE pages are added (see translatedPaths).
+const show = translatedPaths.has(logical);
+
+// astro:i18n builds the base- and locale-aware URL for us — no manual
+// pathname surgery (that was the base-path bug flagged in research-phase4).
+const target = getRelativeLocaleUrl(other, logical.replace(/^\//, ''));
+---
+
+{
+  show && (
+    <a
+      href={target}
+      hreflang={other}
+      class="lang-switcher"
+      aria-label={other === 'de' ? 'Auf Deutsch wechseln' : 'Switch to English'}
+    >
+      {other.toUpperCase()}
+    </a>
+  )
+}
+
+<style>
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0 8px;
+    margin-left: 14px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .lang-switcher:hover,
+  .lang-switcher:focus-visible {
+    color: var(--violet);
+    border-color: var(--violet);
+  }
+</style>

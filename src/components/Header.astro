@@ -1,7 +1,10 @@
 ---
 import logo from '~/assets/brand/logo.png';
+import LangSwitcher from '~/components/LangSwitcher.astro';
+import { t, toLang } from '~/i18n/ui';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const lang = toLang(Astro.currentLocale);
 ---
 
 <header>
@@ -12,32 +15,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     <ul class="nav-links">
       <li>
-        <a href={`${base}/#mission`} aria-haspopup="true">About Us <span class="caret" aria-hidden="true">▾</span></a>
+        <a href={`${base}/#mission`} aria-haspopup="true">{t(lang, 'nav.about')} <span class="caret" aria-hidden="true">▾</span></a>
         <div class="dropdown" role="menu">
-          <a href={`${base}/#mission`} role="menuitem">Mission</a>
-          <a href={`${base}/#testimonials`} role="menuitem">Stories</a>
-          <a href={`${base}/#awards`} role="menuitem">Prizes &amp; Awards</a>
-          <a href={`${base}/#team`} role="menuitem">Team</a>
-          <a href={`${base}/#contact`} role="menuitem">Contact</a>
-          <a href={`${base}/#career`} role="menuitem">Career</a>
+          <a href={`${base}/#mission`} role="menuitem">{t(lang, 'nav.mission')}</a>
+          <a href={`${base}/#testimonials`} role="menuitem">{t(lang, 'nav.stories')}</a>
+          <a href={`${base}/#awards`} role="menuitem">{t(lang, 'nav.awards')}</a>
+          <a href={`${base}/#team`} role="menuitem">{t(lang, 'nav.team')}</a>
+          <a href={`${base}/#contact`} role="menuitem">{t(lang, 'nav.contact')}</a>
+          <a href={`${base}/#career`} role="menuitem">{t(lang, 'nav.career')}</a>
         </div>
       </li>
       <li>
-        <a href={`${base}/programmes/software-development-vienna`} aria-haspopup="true">AMS Programmes <span class="caret" aria-hidden="true">▾</span></a>
+        <a href={`${base}/programmes/software-development-vienna`} aria-haspopup="true">{t(lang, 'nav.programmes')} <span class="caret" aria-hidden="true">▾</span></a>
         <div class="dropdown" role="menu">
-          <a href={`${base}/programmes/software-development-vienna`} role="menuitem">Software Development (Vienna)</a>
+          <a href={`${base}/programmes/software-development-vienna`} role="menuitem">{t(lang, 'nav.programme_sd')}</a>
         </div>
       </li>
       <li>
-        <a href={`${base}/for-companies/work-with-us`} aria-haspopup="true">For Companies <span class="caret" aria-hidden="true">▾</span></a>
+        <a href={`${base}/for-companies/work-with-us`} aria-haspopup="true">{t(lang, 'nav.companies')} <span class="caret" aria-hidden="true">▾</span></a>
         <div class="dropdown" role="menu">
-          <a href={`${base}/for-companies/work-with-us`} role="menuitem">Work with us</a>
-          <a href={`${base}/for-companies/hire-graduates`} role="menuitem">Hire our graduates</a>
+          <a href={`${base}/for-companies/work-with-us`} role="menuitem">{t(lang, 'cta.work_with_us')}</a>
+          <a href={`${base}/for-companies/hire-graduates`} role="menuitem">{t(lang, 'cta.hire_graduates')}</a>
         </div>
       </li>
     </ul>
 
-    <a href={`${base}/#career`} class="cta-hiring">We're hiring!</a>
+    <a href={`${base}/#career`} class="cta-hiring">{t(lang, 'banner.hiring')}</a>
+    <LangSwitcher />
 
     <button
       type="button"

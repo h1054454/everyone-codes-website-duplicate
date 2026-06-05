@@ -1,4 +1,8 @@
 ---
+// German homepage route — Phase 4 i18n scaffold.
+// Content is intentionally still English (EN-only decision 2026-06-05); this
+// page exists so the language switcher has a working DE target. During the
+// translation sprint the copy below + the section components get German text.
 import PageLayout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/Hero.astro';
 import Divider from '~/components/Divider.astro';
@@ -14,6 +18,7 @@ import { organizationJsonLd } from '~/data/organization';
 ---
 
 <PageLayout
+  lang="de"
   title="everyone codes – Your career in IT starts here"
   description="everyone codes gGmbH — high-quality coding education for everyone. Programmes for career switchers in Vienna, fully funded by AMS."
   jsonLd={organizationJsonLd}
